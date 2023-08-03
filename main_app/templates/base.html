@@ -14,17 +14,17 @@
     <header>
         <!-- Top Right  -->
         <nav>
-            <li><a href="">My Account</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
         </nav>
 
         <!--  Side Bar  -->
         <nav>
             <h3>MoneyWise</h3>
-            <li><a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="{% url 'accounts' %}"><i class="fas fa-credit-card"></i> Accounts</a></li>
-            <li><a href="{% url 'transactions' %}"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
-            <li><a href="{% url 'budget' %}"><i class="fas fa-piggy-bank"></i> Budget</a></li>
-            <li><a href="{% url 'settings' %}"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="{% url 'dashboard' %}"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="{% url 'accounts' %}"><i class="fa fa-credit-card"></i> Accounts</a></li>
+            <li><a href="{% url 'transactions' %}"><i class="fa fa-exchange-alt"></i> Transactions</a></li>
+            <li><a href="{% url 'budget' %}"><i class="fa fa-piggy-bank"></i> Budget</a></li>
+            <li><a href="{% url 'settings' %}"><i class="fa fa-cog"></i> Settings</a></li>
         </nav>
     </header>
     <main>

@@ -1,0 +1,14 @@
+<h1>Sign Up</h1>
+
+<p class="red-text">{{ error_message }}</p>
+
+<form action="{% url 'signup' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button type="submit" class="btn">Sign Up</button>
+</form>
+
+<a href="{% url 'demo_account' %}">Demo Account</a>
+<br>
+<a href="{% url 'login' %}">Log In</a>
