@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Account, Income, Expense
+from .models import Account, Income, Expense, Budget
 
 
 @login_required
@@ -28,7 +28,10 @@ def accounts(request):
 def budget(request):
   # Pass through relevent data 
 
-  return render(request, 'budget.html')
+  budgets = Budget.objects.filter(user=request.user)
+  return render(request, 'budget.html', {
+    'budgets': budgets
+  })
 
 
 @login_required
