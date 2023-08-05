@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Accounts page</h1>
-
+<h1>Accounts Page</h1>
+<br>
+<a href="{% url 'account_create' %}">New Account</a>
+<br><br>
 
 {% for account in accounts %}
     {{ account.name }} <br>
+    Balance: {{ account.balance }} <br>
+    <a href="{% url 'account_update' account.id %}">Update</a><br>
+    <a href="{% url 'account_delete' account.id %}">Delete</a><br><br>
 {% endfor %}
 
 

@@ -25,7 +25,7 @@ class Account(models.Model):
         return f'{self.name} ({self.id})'
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'account_id': self.id})
+        return reverse('accounts')
     
     def update_balance(self):
         total_income = self.income_set.aggregate(total=models.Sum('amount'))['total'] or 0

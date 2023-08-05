@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -96,3 +98,20 @@ def demo_account(request):
   user = authenticate(username='admin', password='1234')
   login(request, user)
   return redirect('dashboard')
+
+
+class AccountCreate(LoginRequiredMixin, CreateView):
+  model = Account
+  fields = ['name']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+  
+class AccountUpdate(LoginRequiredMixin, UpdateView):
+  model = Account
+  fields = ['name']
+
+class AccountDelete(LoginRequiredMixin, DeleteView):
+  model = Account
+  success_url = '/accounts'
