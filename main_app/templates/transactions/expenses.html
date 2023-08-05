@@ -3,9 +3,16 @@
 
 
 <h1>Expenses</h1>
+<br>
+<a href="{% url 'account_create' %}">New Expense</a>
+<br><br>
+
+
 
 {% for expense in expenses %}
-    {{ expense }} <br>
+    You made {{ income.amount }} on {{ income.category }} at {{ income.date }} 
+    <a href=""><i class="fa fa-edit"></i></a>
+    <a href=""><i class="fa fa-trash"></i></a> <br><br>
 {% endfor %}
 
 {% endblock %}

@@ -115,3 +115,8 @@ class AccountUpdate(LoginRequiredMixin, UpdateView):
 class AccountDelete(LoginRequiredMixin, DeleteView):
   model = Account
   success_url = '/accounts'
+
+
+class IncomeCreate(LoginRequiredMixin, CreateView):
+  model = Account
+  fields = ['amount', 'category', 'account']

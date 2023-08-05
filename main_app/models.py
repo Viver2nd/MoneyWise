@@ -41,6 +41,7 @@ class Income(models.Model):
         choices=INCOMES,
         default=INCOMES[0][0]
     )
+    description = models.TextField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
@@ -58,6 +59,7 @@ class Expense(models.Model):
         choices=EXPENSES,
         default=EXPENSES[0][0]
     )
+    description = models.TextField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
