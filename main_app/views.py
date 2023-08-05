@@ -18,8 +18,10 @@ def dashboard(request):
 @login_required
 def accounts(request):
   # Pass through relevent data 
-
-  return render(request, 'accounts.html')
+  accounts = Account.objects.filter(user=request.user)
+  return render(request, 'accounts.html', {
+    'accounts': accounts
+  })
 
 
 @login_required
@@ -51,7 +53,7 @@ def incomes(request):
   incomes = Income.objects.filter(account__in=accounts)
 
   return render(request, 'transactions/incomes.html', {
-    'accounts': accounts, 'incomes': incomes
+    'incomes': incomes
   })
 
 
