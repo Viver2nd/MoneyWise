@@ -2,6 +2,19 @@
 {% block content %}
 
 <h1>Dashboard Page</h1>
-<h2>I am a test!</h2>
+
+<!-- This is just to display during development, feel free to change -->
+{% for account in accounts %}
+{{ account.update_balance }} <br>
+    Account Name: {{ account.name }} <br>
+    Balance: {{ account.balance }} <br><br>
+    Incomes: {% for income in account.income_set.all %}
+        <br>- You made {{ income.amount }} on {{ income.category }} at {{ income.date }}
+    {% endfor %}
+    <br><br>
+    Expenses: {% for expense in account.expense_set.all %}
+        <br>- You spent {{ expense.amount }} on {{ expense.category }} at {{ expense.date }}
+    {% endfor %} <br><br>
+{% endfor %}
 
 {% endblock %}

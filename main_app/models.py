@@ -4,16 +4,16 @@ from datetime import date
 from django.contrib.auth.models import User
 
 INCOMES = (
-    ('Salary', 'green'), ('Gift', 'purple'),
-    ('Investment', 'lightblue'), ('Rewards', 'orange'),
-    ('Other', 'lightgray')
+    ('salary', 'Salary'), ('gift', 'Gift'),
+    ('investment', 'Investment'), ('rewards', 'Rewards'),
+    ('other', 'Other')
 )
 
 EXPENSES = (
-    ('Clothing', 'hotpink'), ('Restaurant', 'red'),
-    ('Supermarket', 'darkgreen'), ('Home', 'orange'),
-    ('Travel', 'darkblue'), ('Transport', 'lightblue'), 
-    ('Other', 'lightgray')
+    ('clothing', 'Clothing'), ('restaurant', 'Restaurant'),
+    ('supermarket', 'Supermarket'), ('home', 'Home'),
+    ('travel', 'Travel'), ('transport', 'Transport'), 
+    ('other', 'Other')
 )
 
 class Account(models.Model):
@@ -45,7 +45,7 @@ class Income(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.account} made {self.amount} on {self.category}"
+        return f"{self.account} made {self.amount} on {self.category} at {self.date}"
     
     class Meta:
         ordering = ['-date']
@@ -62,7 +62,7 @@ class Expense(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.account} spent {self.amount} on {self.category}"
+        return f"{self.account} spent {self.amount} on {self.category} at {self.date}"
     
     class Meta:
         ordering = ['-date']
