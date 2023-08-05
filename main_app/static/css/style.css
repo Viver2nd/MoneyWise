@@ -8,7 +8,7 @@
 
 :root {
 	/* Colors */
-	--primary-color: #03EF62;
+	--primary-color: #EDF3FB;
 	--panel-color: #FFF;
 	--text-color: #05192D;
 	--black-light-color: #707070;
@@ -24,10 +24,16 @@
 body{
 	min-height: 100vh;
 	background-color: var(--primary-color);
+	color: var(--text-color);
+}
+
+main {
+	padding-left: 300px;
+	padding-top: 100px;
 }
 
 body.dark{
-	--primary-color: #03EF62;
+	--primary-color: #213147;
 	--panel-color: #05192D;
 	--text-color: #03EF62;
 	--black-light-color: #CCC;
