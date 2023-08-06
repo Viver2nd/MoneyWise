@@ -4,15 +4,37 @@
 
 <h1>Incomes</h1>
 <br>
-<a href="{% url 'income_create' %}">New Income</a>
+<a class="new-btn" href="{% url 'income_create' %}"><span class="link-name">+ New Income </span></a>
 <br><br>
 
-{% for income in incomes %}
-    You made {{ income.amount }} on {{ income.category }} at {{ income.date }} 
-    <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
-    <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a> <br><br>
-
-{% endfor %}
-
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for income in incomes %}
+                    <tr>
+                        <td>{{ income.amount }}</td>
+                        <td>{{ income.category }}</td>
+                        <td>{{ income.date|date:"d/m/Y" }}</td>
+                        <td>
+                            <a href="{% url 'income_delete' income.id %}" ><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'income_update' income.id %}" ><i class="fa fa-edit"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

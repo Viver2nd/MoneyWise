@@ -150,3 +150,35 @@ nav .menu-items{
 body.dark .switch:before{
 	left:20px
 }
+
+.new-btn {
+	background-color: var(--panel-color);
+	padding: 10px 20px;
+	border-radius: 20px;
+	color: var(--text-color);
+	text-decoration: none;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.income-btn:hover {
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+.card {
+	background-color: var(--panel-color);
+	border-radius: 30px;
+	border: none;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+.table thead th{
+	color: var(--black-light-color);
+	border: none;
+}
+
+.table tbody td{
+	color: var(--black-light-color);
+	
+}
