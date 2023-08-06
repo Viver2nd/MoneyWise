@@ -25,7 +25,7 @@ class Account(models.Model):
         return f'{self.name} ({self.id})'
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'account_id': self.id})
+        return reverse('accounts')
     
     def update_balance(self):
         total_income = self.income_set.aggregate(total=models.Sum('amount'))['total'] or 0
@@ -41,11 +41,15 @@ class Income(models.Model):
         choices=INCOMES,
         default=INCOMES[0][0]
     )
+    description = models.TextField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.account.name} made {self.amount} on {self.category} at {self.date}"
+    
+    def get_absolute_url(self):
+        return reverse('incomes')
     
     class Meta:
         ordering = ['-date']
@@ -58,12 +62,16 @@ class Expense(models.Model):
         choices=EXPENSES,
         default=EXPENSES[0][0]
     )
+    description = models.TextField(max_length=250)
     date = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.account.name} spent {self.amount} on {self.category} at {self.date}"
     
+    def get_absolute_url(self):
+        return reverse('expenses')
+
     class Meta:
         ordering = ['-date']
 

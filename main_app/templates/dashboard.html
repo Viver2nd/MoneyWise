@@ -2,10 +2,10 @@
 {% block content %}
 
 <h1>Dashboard Page</h1>
+<br>
 
 <!-- This is just to display during development, feel free to change -->
 {% for account in accounts %}
-{{ account.update_balance }} <br>
     Account Name: {{ account.name }} <br>
     Balance: {{ account.balance }} <br><br>
     Incomes: {% for income in account.income_set.all %}

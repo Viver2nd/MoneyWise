@@ -3,9 +3,16 @@
 
 
 <h1>Expenses</h1>
+<br>
+<a href="{% url 'expense_create' %}">New Expense</a>
+<br><br>
+
+
 
 {% for expense in expenses %}
-    {{ expense }} <br>
+    You spent {{ expense.amount }} on {{ expense.category }} at {{ expense.date }} 
+    <a href="{% url 'expense_update' expense.id %}"><i class="fa fa-edit"></i></a>
+    <a href="{% url 'expense_delete' expense.id %}"><i class="fa fa-trash"></i></a> <br><br>
 {% endfor %}
 
 {% endblock %}
