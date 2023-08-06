@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Financial Calculator</h1>
+<br>
+
+
+
+<label for="startingAmount">Initial Investment (£)</label>
+<input type="number" id="startingAmount" name="startingAmount"><br>
+<label for="contribution">Yearly Contribution (£)</label>
+<input type="number" id="contribution" name="contribution"><br>
+<label for="yearlyInterest">Yearly Interest Rate (%)</label>
+<input type="number" id="yearlyInterest" name="yearlyInterest"><br>
+<label for="years">Length of Time in Years</label>
+<input type="number" id="years" name="years"><br>
+<button class="btn btn-primary">Calculate</button>
+
+
+
+<table>
+    
+</table>
+
+<script>
+    const button = document.querySelector('button');
+    let startingAmount;
+    let yearlyInterest;
+    let years;
+
+    function compound(start, contribution, interest, years) {
+        let amount = start;
+        const percent = (parseInt(interest) + 100) / 100;
+        const cont = parseInt(contribution);
+        result = [];
+
+        for (let i = 0; i < years; i++) {
+            amount = amount * percent;
+            amount += cont
+            result.push({year: i + 1, amount: amount, contribution: cont})
+        }
+        return result;
+    }
+
+    button.addEventListener('click', function (event) {
+        start = document.getElementById('startingAmount').value;
+        contribution = document.getElementById('startingAmount').value;
+        int = document.getElementById('yearlyInterest').value;
+        years = document.getElementById('years').value;
+        document.querySelector('h2').innerText = compound(start, contribution, int, years).toFixed(2);
+    })
+
+
+</script>
+
+
+{% endblock %}

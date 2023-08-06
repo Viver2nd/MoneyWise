@@ -2,12 +2,86 @@
 {% block content %}
 
 
+
 <h1>Transactions Page</h1>
 <br>
+{% if accounts %}
+    <a href="{% url 'incomes' %}">Incomes</a>
+    <a href="{% url 'expenses' %}">Expenses</a>
+    <br>
+    {% if incomes %}
+    <div class="container mt-4">
+        <h4>Incomes:</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for income in incomes %}
+                    <tr>
+                        <td>{{ income.account.name }}</td>
+                        <td class="text-success">£{{ income.amount }}</td>
+                        <td>{{ income.category }}</td>
+                        <td>{{ income.date|date:"d/m/y" }}</td>
+                        <td>
+                            <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
+                            <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h4>No Incomes</h4>
+    {% endif %}
 
-<a href="{% url 'incomes' %}">Incomes</a>
-<a href="{% url 'expenses' %}">Expenses</a>
+    {% if expenses %}
+    <div class="container mt-4">
+        <h4>Expenses:</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                    <tr>
+                        <td>{{ expense.account.name }}</td>
+                        <td class="text-danger">£{{ expense.amount }}</td>
+                        <td>{{ expense.category }}</td>
+                        <td>{{ expense.date|date:"d/m/y" }}</td>
+                        <td>
+                            <a href="{% url 'expense_update' expense.id %}"><i class="fa fa-edit"></i></a>
+                            <a href="{% url 'expense_delete' expense.id %}"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <h4>No Expenses</h4>
+    {% endif %}
 
 
 
+{% else %}
+    <h2>You have no accounts</h2>
+    <br>
+    <a href="{% url 'accounts' %}">Accounts</a>
+
+
+{% endif %}
 {% endblock %}

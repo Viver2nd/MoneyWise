@@ -22,7 +22,7 @@ class Account(models.Model):
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
-        return f'{self.name} ({self.id})'
+        return f'{self.name}: £{self.balance}'
     
     def get_absolute_url(self):
         return reverse('accounts')
