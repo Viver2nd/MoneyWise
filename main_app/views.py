@@ -12,8 +12,14 @@ from .models import Account, Income, Expense, Budget
 def dashboard(request):
   # Pass through relevent data 
   accounts = Account.objects.filter(user=request.user)
+  balance = 0
+  for account in accounts: 
+    balance += int(account.balance)
+  budgets = Budget.objects.get(user=request.user)
+
   return render(request, 'dashboard.html', {
-    'accounts': accounts
+    'accounts': accounts, 'balance': balance,
+    'budgets': budgets
   })
 
 
