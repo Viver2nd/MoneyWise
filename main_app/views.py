@@ -37,6 +37,13 @@ def budget(request):
 
 
 @login_required
+def calculator(request):
+  # Pass through relevent data 
+
+  return render(request, 'calculator.html')
+
+
+@login_required
 def settings(request):
   # Pass through relevent data 
 
@@ -47,7 +54,13 @@ def settings(request):
 def transactions(request):
   # Pass through relevent data 
 
-  return render(request, 'transactions/transactions.html')
+  accounts = Account.objects.filter(user=request.user)
+  expenses = Expense.objects.filter(account__in=accounts)
+  incomes = Income.objects.filter(account__in=accounts)
+
+  return render(request, 'transactions/transactions.html', {
+    'incomes': incomes, 'expenses': expenses, 'accounts': accounts
+  })
 
 
 def incomes(request):
@@ -56,6 +69,7 @@ def incomes(request):
   accounts = Account.objects.filter(user=request.user)
 
   incomes = Income.objects.filter(account__in=accounts)
+
 
   return render(request, 'transactions/incomes.html', {
     'incomes': incomes

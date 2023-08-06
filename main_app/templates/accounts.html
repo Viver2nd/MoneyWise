@@ -9,8 +9,8 @@
 {% for account in accounts %}
     {{ account.name }} <br>
     Balance: {{ account.balance }} <br>
-    <a href="{% url 'account_update' account.id %}">Update</a><br>
-    <a href="{% url 'account_delete' account.id %}">Delete</a><br><br>
+    <a href="{% url 'account_update' account.id %}"><i class="fa fa-edit"></i></a>
+    <a href="{% url 'account_delete' account.id %}"><i class="fa fa-trash"></i></a><br><br>
 {% endfor %}
 
 
