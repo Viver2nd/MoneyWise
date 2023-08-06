@@ -1,25 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Financial Calculator</h1>
+<h1>Compound Interest Calculator</h1>
 <br>
 
 
 
 <label for="startingAmount">Initial Investment (£)</label>
-<input type="number" id="startingAmount" name="startingAmount"><br>
+<input type="number" min="0" value="0" id="startingAmount" name="startingAmount"><br>
 <label for="contribution">Yearly Contribution (£)</label>
-<input type="number" id="contribution" name="contribution"><br>
+<input type="number" value="0" id="contribution" name="contribution"><br>
 <label for="yearlyInterest">Yearly Interest Rate (%)</label>
-<input type="number" id="yearlyInterest" name="yearlyInterest"><br>
+<input type="number" value="0" id="yearlyInterest" name="yearlyInterest"><br>
 <label for="years">Length of Time in Years</label>
-<input type="number" id="years" name="years"><br>
+<input type="number" min="1" value="1" id="years" name="years"><br>
 <button class="btn btn-primary">Calculate</button>
 
+<hr>
+<br>
+<h2></h2>
+<br>
 
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Amount</th>
+            <th>Contribution</th>
+        </tr>
+    </thead>
+    <tbody>
 
-<table>
-    
+    </tbody>
 </table>
 
 <script>
@@ -27,6 +39,12 @@
     let startingAmount;
     let yearlyInterest;
     let years;
+
+    const format = {
+        style: "decimal",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    };
 
     function compound(start, contribution, interest, years) {
         let amount = start;
@@ -44,10 +62,23 @@
 
     button.addEventListener('click', function (event) {
         start = document.getElementById('startingAmount').value;
-        contribution = document.getElementById('startingAmount').value;
+        contribution = document.getElementById('contribution').value;
         int = document.getElementById('yearlyInterest').value;
         years = document.getElementById('years').value;
-        document.querySelector('h2').innerText = compound(start, contribution, int, years).toFixed(2);
+        let result = compound(start, contribution, int, years)
+        let string = []
+        result.forEach(res => {
+            string.push(
+                `<tr>
+                <td>${res.year}</td>
+                <td>£${res.amount.toLocaleString("en-US", format)}</td>
+                <td>£${res.contribution.toLocaleString("en-US", format)}</td>
+                </tr>`
+            )
+            
+        })
+        document.querySelector('h2').innerText = `In ${years} years, you will have £${result[result.length - 1].amount.toLocaleString("en-US", format)}`
+        document.querySelector('tbody').innerHTML = string.join('');
     })
 
 
