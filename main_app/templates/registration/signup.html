@@ -1,14 +1,30 @@
-<h1>Sign Up</h1>
+{% extends 'registration/registration_base.html' %}
+{% block content %}
+<!-- temporary -->
+<style>
+    main {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+</style>
 
+
+<h1>Sign Up</h1>
 <p class="red-text">{{ error_message }}</p>
 
 <form action="{% url 'signup' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn">Sign Up</button>
+    <button type="submit" class="btn btn-primary">Sign Up</button> - 
+    <a href="{% url 'demo_account' %}">Demo Account</a> - 
+    <a href="{% url 'login' %}">Log In</a>
 </form>
 
-<a href="{% url 'demo_account' %}">Demo Account</a>
-<br>
-<a href="{% url 'login' %}">Log In</a>
+
+
+{% endblock %}

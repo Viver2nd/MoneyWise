@@ -1,12 +1,27 @@
+{% extends 'registration/registration_base.html' %}
+{% block content %}
+<!-- temporary -->
+<style>
+    main {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+</style>
+
 <h1>Log In</h1>
 
 <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn">Log In</button>
+    <button type="submit" class="btn btn-primary">Log In</button> - 
+    <a href="{% url 'demo_account' %}">Demo Account</a> - 
+    <a href="{% url 'signup' %}">Sign Up</a>
 </form>
-<a href="{% url 'demo_account' %}">Demo Account</a>
-<br>
-<a href="{% url 'signup' %}">Sign Up</a>
 
+
+{% endblock %}
