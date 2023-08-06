@@ -192,3 +192,20 @@ class ExpenseDelete(LoginRequiredMixin, DeleteView):
     accounts = Account.objects.all()
     for acc in accounts: acc.update_balance()
     return response
+  
+
+class BudgetCreate(LoginRequiredMixin, CreateView):
+  model = Budget
+  fields = ['date_from', 'date_to', 'amount']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+  
+class BudgetUpdate(LoginRequiredMixin, UpdateView):
+  model = Budget
+  fields = ['date_from', 'date_to', 'amount']
+
+class BudgetDelete(LoginRequiredMixin, DeleteView):
+  model = Budget
+  success_url = '/budget'

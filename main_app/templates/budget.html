@@ -3,9 +3,14 @@
 
 <h1>Budget Page</h1>
 <br>
+<a href="{% url 'budget_create' %}">New Budget</a>
+<br><br>
 
 {% for budget in budgets %}
-    {{ budget }} <br>
+    {{ budget }} 
+    <a href="{% url 'budget_update' budget.id %}"><i class="fa fa-edit"></i></a>
+    <a href="{% url 'budget_delete' budget.id %}"><i class="fa fa-trash"></i></a>
+    <br><br>
 {% endfor %}
 
 {% endblock %}
