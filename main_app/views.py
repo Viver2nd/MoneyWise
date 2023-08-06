@@ -118,5 +118,63 @@ class AccountDelete(LoginRequiredMixin, DeleteView):
 
 
 class IncomeCreate(LoginRequiredMixin, CreateView):
-  model = Account
-  fields = ['amount', 'category', 'account']
+  model = Income
+  fields = ['amount', 'category', 'description', 'account']
+
+  def form_valid(self, form):
+    response = super().form_valid(form)
+    account = form.cleaned_data['account']
+    Account.objects.get(id=account.id).update_balance()
+    return response
+
+
+class IncomeUpdate(LoginRequiredMixin, UpdateView):
+  model = Income
+  fields = ['amount', 'category', 'description', 'account']
+
+  def form_valid(self, form):
+    response = super().form_valid(form)
+    account = form.cleaned_data['account']
+    Account.objects.get(id=account.id).update_balance()
+    return response
+
+class IncomeDelete(LoginRequiredMixin, DeleteView):
+  model = Income
+  success_url = '/transactions/incomes'
+
+  def form_valid(self, form):
+    response = super().form_valid(form)
+    accounts = Account.objects.all()
+    for acc in accounts: acc.update_balance()
+    return response
+
+
+class ExpenseCreate(LoginRequiredMixin, CreateView):
+  model = Expense
+  fields = ['amount', 'category', 'description', 'account']
+
+  def form_valid(self, form):
+    response = super().form_valid(form)
+    account = form.cleaned_data['account']
+    Account.objects.get(id=account.id).update_balance()
+    return response
+
+class ExpenseUpdate(LoginRequiredMixin, UpdateView):
+  model = Expense
+  fields = ['amount', 'category', 'description', 'account']
+
+  def form_valid(self, form):
+    response = super().form_valid(form)
+    account = form.cleaned_data['account']
+    Account.objects.get(id=account.id).update_balance()
+    return response
+
+class ExpenseDelete(LoginRequiredMixin, DeleteView):
+  model = Expense
+  success_url = '/transactions/expenses'
+
+  def form_valid(self, form):
+    response = super().form_valid(form)
+    accounts = Account.objects.all()
+    for acc in accounts: acc.update_balance()
+    return response

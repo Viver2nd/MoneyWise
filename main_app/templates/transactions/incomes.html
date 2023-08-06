@@ -4,13 +4,13 @@
 
 <h1>Incomes</h1>
 <br>
-<a href="{% url 'account_create' %}">New Income</a>
+<a href="{% url 'income_create' %}">New Income</a>
 <br><br>
 
 {% for income in incomes %}
     You made {{ income.amount }} on {{ income.category }} at {{ income.date }} 
-    <a href=""><i class="fa fa-edit"></i></a>
-    <a href=""><i class="fa fa-trash"></i></a> <br><br>
+    <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
+    <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a> <br><br>
 
 {% endfor %}
 

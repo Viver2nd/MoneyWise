@@ -48,6 +48,9 @@ class Income(models.Model):
     def __str__(self):
         return f"{self.account.name} made {self.amount} on {self.category} at {self.date}"
     
+    def get_absolute_url(self):
+        return reverse('incomes')
+    
     class Meta:
         ordering = ['-date']
     
@@ -66,6 +69,9 @@ class Expense(models.Model):
     def __str__(self):
         return f"{self.account.name} spent {self.amount} on {self.category} at {self.date}"
     
+    def get_absolute_url(self):
+        return reverse('expenses')
+
     class Meta:
         ordering = ['-date']
 
