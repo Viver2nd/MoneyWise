@@ -112,6 +112,10 @@ nav.close li a .link-name{
 	opacity: 0;
 	pointer-events: none;
 }
+nav.close .logo_name{
+	opacity: 0;
+	pointer-events: none;
+}
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name{
 	color: var(--text-color);
@@ -169,9 +173,11 @@ nav.close ~ .dashboard{
 }
 
 .dashboard .top{
+	background-color: var(--panel-color);
 	position: fixed;
 	top:0;
 	left:250px;
+	overflow: hidden;
 	display: flex;
 	width: calc(100% - 250px);
 	justify-content: space-between;
@@ -179,6 +185,7 @@ nav.close ~ .dashboard{
 	align-items: center;
 	transition: var(--trans-05);
 }
+
 nav.close ~ .dashboard .top{
 	left:73px;
 	width: calc(100% - 73px);
@@ -211,7 +218,6 @@ nav.close ~ .dashboard .top{
 	border-radius: 30px;
 	border: none;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-
 }
 
 .table thead th{
