@@ -359,8 +359,6 @@ th.date {
 	font-size: 18px;
 }
 
-
-
 .form-container{
 	background-color: var(--panel-color);
 	border-radius: 25px;
@@ -410,7 +408,6 @@ th.date {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-
 .dropdown-menu{
     background-color: var(--panel-color);
     border-radius: 20px;
@@ -428,3 +425,4 @@ th.date {
     background-color: var(--primary-color);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+

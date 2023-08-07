@@ -10,17 +10,59 @@
         flex-direction: column;
         height: 100vh;
     }
+    h2{
+        margin-top: 10px;
+        color:#974DFF;
+    }
+    h3{
+        margin-bottom:20px;
+    }
+    input{
+        width: 100%;;
+	    border-radius: 25px;
+	    border: 2px solid #974DFF;
+	    padding: 5px;
+    }
+    .form-login{
+        background-color: var(--panel-color);
+        border-radius: 25px;
+        padding: 30px;
+        align-items: center;
+        text-align: left;
+        max-width: 700px;
+        box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+        -webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+        -moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+    }
+    .form-login .title{
+        text-align: center;
+    }
+    .form-login .form-btns button{
+        background-color: #974DFF;
+        color: #FFF;
+        border-radius: 25px;
+        padding:10px;
+        width:110px;
+        border: none;
+    }
+    .form-login .form-btns a{
+        color: #974DFF;
+    }
 </style>
 
-<h1>Log In</h1>
-
-<form action="{% url 'login' %}" method="POST">
+<form action="{% url 'login' %}" method="POST" class="form-login">
+    <div class="title">
+        <h2>MoneyWise</h2>
+        <h3>Log In</h3>
+    </div>
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p }} 
     <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn btn-primary">Log In</button> - 
-    <a href="{% url 'demo_account' %}">Demo Account</a> - 
-    <a href="{% url 'signup' %}">Sign Up</a>
+    <div class="form-btns">
+        <button type="submit">Log In</button> -
+        <a href="{% url 'demo_account' %}">Demo Account</a> -
+        <a href="{% url 'signup' %}">Sign Up</a> 
+    </div>
 </form>
 
 
