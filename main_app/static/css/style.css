@@ -218,6 +218,31 @@ nav.close ~ .dashboard .top{
 	border-radius: 30px;
 	border: none;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: space-between;
+}
+
+.d-flex  i{
+	height: 70px;
+	width: 70px;
+	font-size: 35px;
+	padding-top:6px;
+	padding-left:17px;
+	border-radius: 50%;
+	color: #05192D;
+}
+
+.uil-balance-scale{
+	background-color: #03EF62;
+}
+.uil-money-stack{
+	background-color: #60e7ff;
+}
+.uil-download-alt{
+	background-color: #974DFF;
+}
+.uil-upload-alt{
+	background-color: #ff931e;
 }
 
 .table thead th{
@@ -232,6 +257,7 @@ nav.close ~ .dashboard .top{
 	display: flex;
 	flex-wrap: wrap;
 }
+
 
 .dash-card{
 	justify-content: space-between;
@@ -274,6 +300,10 @@ nav.close ~ .dashboard .top{
 	flex-direction: column;
 	justify-content: space-between;
 }
+th.date {
+	cursor: pointer;
+}
+
 
 .add-account{
 	color: #974DFF;
@@ -329,6 +359,8 @@ nav.close ~ .dashboard .top{
 	font-size: 18px;
 }
 
+}
+
 .form-container{
 	background-color: var(--panel-color);
 	border-radius: 25px;
@@ -340,6 +372,7 @@ nav.close ~ .dashboard .top{
 	-webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 }
+
 
 .form-container table{
 	margin-top: 30px;
@@ -360,3 +393,4 @@ nav.close ~ .dashboard .top{
 	background-color: #974DFF;
 	color: #FFF;
 }
+
