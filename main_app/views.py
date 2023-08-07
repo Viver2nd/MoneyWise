@@ -39,8 +39,29 @@ def dashboard(request):
 def accounts(request):
   # Pass through relevent data 
   accounts = Account.objects.filter(user=request.user)
-  return render(request, 'accounts.html', {
+  return render(request, 'accounts/accounts.html', {
     'accounts': accounts
+  })
+
+
+@login_required
+def account_detail(request, account_id):
+  account = Account.objects.get(id=account_id)
+
+  incomes = Income.objects.filter(account=account)
+  expenses = Expense.objects.filter(account=account)
+
+  incomes_list = [income.amount for income in incomes]
+  total_incomes = sum(incomes_list)
+
+  expenses_list = [expense.amount for expense in expenses]
+  total_expenses = sum(expenses_list)
+
+
+  return render(request, 'accounts/detail.html', {
+    'account': account, 'total_incomes': total_incomes,
+    'total_expenses': total_expenses, 'incomes': incomes,
+    'expenses': expenses
   })
 
 

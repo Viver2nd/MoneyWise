@@ -426,3 +426,11 @@ th.date {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.dash-card-link {
+	color: var(--text-color);
+}
+
+.dash-card-link:hover {
+	text-decoration: none;
+	color: var(--text-color);
+}
