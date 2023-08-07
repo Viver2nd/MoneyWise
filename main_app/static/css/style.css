@@ -30,7 +30,7 @@ body{
 body.dark{
 	--primary-color: #213147;
 	--panel-color: #05192D;
-	--text-color: #03EF62;
+	--text-color: #FFF;
 	--black-light-color: #FFF;
 	--toggle-color: #FFF;
 	--title-icon-color:#CCC;
@@ -228,7 +228,7 @@ nav.close ~ .dashboard .top{
 .table tbody td {
 	color: var(--black-light-color);
 }
-.dash-card-container{
+.dash-card-container, .account-container{
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -243,6 +243,9 @@ nav.close ~ .dashboard .top{
 	height: 200px;
 	margin:20px;
 	align-items: center;
+	box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 }
 .dash-card i{
 	height: 70px;
@@ -251,6 +254,7 @@ nav.close ~ .dashboard .top{
 	padding-top:6px;
 	padding-left:17px;
 	border-radius: 50%;
+	color:#05192D;
 }
 .dash-card .uil-balance-scale{
 	background-color: #03EF62;
@@ -271,6 +275,88 @@ nav.close ~ .dashboard .top{
 	justify-content: space-between;
 }
 
+.add-account{
+	color: #974DFF;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--panel-color);
+	justify-content: space-between;
+	border-radius: 25px;
+	padding:40px 30px;
+	width: 350px;
+	height: 200px;
+	margin:20px;
+	align-items: center;
+	box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+}
+.add-account:hover{
+	text-decoration: none;
+}
+.add-account i{
+	font-size: 60px;
+}
+.wallet{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--panel-color);
+	border-radius: 25px;
+	padding:40px 30px 0 30px;
+	width: 350px;
+	height: 200px;
+	margin:20px;
+	align-items: left;
+	box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+}
+.wallet-icons{
+	border-top: 1px solid #CCC;
+	font-size: 25px;
+	display: flex;
+	justify-content: space-around;
+}
+.wallet-icons i{
+	color: #974DFF;
+}
 
+.wallet span{
+	color:green;
+	padding-left: 110px;
+	font-weight: 600;
+	font-size: 18px;
+}
 
+.form-container{
+	background-color: var(--panel-color);
+	border-radius: 25px;
+	padding: 30px;
+	align-items: center;
+	text-align: center;
+	max-width: 700px;
+	box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+}
 
+.form-container table{
+	margin-top: 30px;
+	width: 100%;
+	border-radius: 15px;
+}
+.form-container table input{
+	width: 100%;;
+	border-radius: 25px;
+	border: 2px solid #974DFF;
+	padding: 5px;
+}
+
+.form-container .btn{
+	margin-top: 30px;
+	width: 30%;
+	border-radius: 25px;
+	background-color: #974DFF;
+	color: #FFF;
+}
