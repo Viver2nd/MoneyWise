@@ -27,16 +27,11 @@ body{
 	color: var(--text-color);
 }
 
-main {
-	padding-left: 300px;
-	padding-top: 100px;
-}
-
 body.dark{
 	--primary-color: #213147;
 	--panel-color: #05192D;
 	--text-color: #03EF62;
-	--black-light-color: #CCC;
+	--black-light-color: #FFF;
 	--toggle-color: #FFF;
 	--title-icon-color:#CCC;
 }
@@ -49,6 +44,10 @@ nav{
 	width:250px;
 	padding: 10px 14px;
 	background-color: var(--panel-color);
+	transition: var(--trans-05);
+}
+nav.close{
+	width: 73px;
 }
 nav .logo-name{
 	display: flex;
@@ -109,6 +108,10 @@ nav .menu-items{
 	font-weight: 400;
 	color: var(--black-light-color);
 }
+nav.close li a .link-name{
+	opacity: 0;
+	pointer-events: none;
+}
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name{
 	color: var(--text-color);
@@ -150,7 +153,45 @@ nav .menu-items{
 body.dark .switch:before{
 	left:20px
 }
+.dashboard{
+	position: relative;
+	left:250px;
+	background-color: var(--panel-color);
+	height: 60px;
+	width: calc(100% - 250px );
+	padding: 10px 14px;
+	transition: var(--trans-05);
+}
 
+nav.close ~ .dashboard{
+	left:73px;
+	width: calc(100% - 73px);
+}
+
+.dashboard .top{
+	position: fixed;
+	top:0;
+	left:250px;
+	display: flex;
+	width: calc(100% - 250px);
+	justify-content: space-between;
+	padding:10px 14px;
+	align-items: center;
+	transition: var(--trans-05);
+}
+nav.close ~ .dashboard .top{
+	left:73px;
+	width: calc(100% - 73px);
+}
+
+.dashboard .top .sidebar-toggle{
+	font-size: 26px;
+	color: var(--text-color);
+	cursor: pointer;
+}
+.dashboard-content{
+	padding-top: 100px;
+}
 .new-btn {
 	background-color: var(--panel-color);
 	padding: 10px 20px;
@@ -180,9 +221,10 @@ body.dark .switch:before{
 
 .table tbody td {
 	color: var(--black-light-color);
+
 	
 }
 
-th.date {
-	cursor: pointer;
-}
+
+
+

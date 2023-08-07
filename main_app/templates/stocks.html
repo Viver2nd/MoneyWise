@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Stocks</h1>
+<br>
+<div id="stock-section">
+    <h2></h2>
+</div>
+
+
+
+<script>
+    const baseURL = 'https://www.alphavantage.co/query';
+    const apiKey = 'KEDWTVV13Y63RVQR';
+    let outputType = 'TIME_SERIES_INTRADAY';
+    let stock = 'IBM';
+
+    const url = `${baseURL}?function=${outputType}&symbol=${stock}&interval=5min&apikey=${apiKey}`;
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        const timeSeriesData = data['Time Series (5min)'];
+        const latestDataPoint = Object.values(timeSeriesData)[0]; // Get the first (latest) data point
+
+        const currentStockPrice = parseFloat(latestDataPoint['4. close']);
+        console.log('Current Stock Price:', currentStockPrice);
+
+        document.querySelector('h2').innerText = data['Meta Data']['2. Symbol'];
+
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+</script>
+{% endblock %}

@@ -86,4 +86,4 @@ class Budget(models.Model):
         return f"Budget from {self.date_from} to {self.date_to}: {self.amount}"
     
     def get_absolute_url(self):
-        return reverse('budget')
+        return reverse('budgets')
