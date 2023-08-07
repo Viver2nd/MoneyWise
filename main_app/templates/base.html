@@ -90,22 +90,39 @@
 		</div>
 	</nav>
 
+		<main class="dashboard">
+			<div class="top">
+				<i class="uil uil-arrow-left sidebar-toggle"></i>
+				<i class="uil uil-user"></i>
+			</div>
+			<div class="dashboard-content">
+			{% block content %}
+			{% endblock %}
+			</div>
+    	</main>
     
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
     <footer>
         
     </footer>
 
     <script>
         const body = document.querySelector("body");
-	    const modeToggle = body.querySelector(".mode-toggle");
+			modeToggle = body.querySelector(".mode-toggle");
+			sidebar = body.querySelector("nav");
+			sidebarToggle = body.querySelector(".sidebar-toggle");
 
-        modeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark");
-        });
+			modeToggle.addEventListener("click", () => {
+				body.classList.toggle("dark"); 
+			});
+
+			//if(localStorage.getItem('dark')) {
+			//		body.classList.toggle('dark');
+			//	}
+
+			sidebarToggle.addEventListener("click", () => {
+				sidebar.classList.toggle("close");
+			})
+			
     </script>
 </body>
 </html>
