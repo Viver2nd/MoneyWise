@@ -221,10 +221,41 @@ nav.close ~ .dashboard .top{
 
 .table tbody td {
 	color: var(--black-light-color);
+}
 
-	
+th.date {
+	cursor: pointer;
+}
+
+.dropdown button{
+	border-radius: 30px;
+	background-color: #6503ab;
+	height: 60px;
+	width:200px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	font-size: 20px;
+	color: white;
+}
+
+.dropdown button:hover {
+	color: white;
+	background-color: #53018d;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
+.dropdown-menu{
+	background-color: var(--panel-color);
+	border-radius: 20px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	border: none;
+}
 
-
+.dropdown-item{
+	color: var(--black-light-color);
+}
+.dropdown-item:hover{
+	border-radius: 10px;
+	background-color: var(--primary-color);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
