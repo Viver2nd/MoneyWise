@@ -35,7 +35,6 @@ def accounts(request):
   })
 
 
-
 @login_required
 def budgets(request):
   # Pass through relevent data 
@@ -49,9 +48,20 @@ def budgets(request):
 
 @login_required
 def stocks(request):
+ 
+  stock_selection = [
+  ['Apple', 'AAPL'], ['Amazon', 'AMZN'], ['Microsoft', 'MSFT'], ['Alphabet (Google)', 'GOOGL'], ['Facebook', 'FB'],
+  ['Tesla', 'TSLA'], ['Netflix', 'NFLX'], ['Alibaba', 'BABA'], ['JPMorgan Chase', 'JPM'], ['Visa', 'V'],
+  ['Johnson & Johnson', 'JNJ'], ['Walmart', 'WMT'], ['Procter & Gamble', 'PG'], ['Mastercard', 'MA'], ['Bank of America', 'BAC'],
+  ['Verizon', 'VZ'], ['NVIDIA', 'NVDA'], ['Disney', 'DIS'], ['Adobe', 'ADBE'], ['Coca-Cola', 'KO'], ['Intel', 'INTC'],
+  ['PayPal', 'PYPL'], ['Pfizer', 'PFE'], ['Cisco', 'CSCO'], ['Netflix', 'NFLX'], ['Oracle', 'ORCL'], ['Abbott Laboratories', 'ABT'],
+  ['Salesforce', 'CRM'], ['Qualcomm', 'QCOM'], ['Home Depot', 'HD'],
+  ]
 
+  return render(request, 'stocks.html', {
+   'stock_selection': stock_selection
+  }) 
 
-  return render(request, 'stocks.html') 
 
 
 @login_required
@@ -226,4 +236,4 @@ class BudgetUpdate(LoginRequiredMixin, UpdateView):
 
 class BudgetDelete(LoginRequiredMixin, DeleteView):
   model = Budget
-  success_url = '/budget'
+  success_url = '/budgets'
