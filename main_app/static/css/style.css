@@ -201,7 +201,7 @@ nav.close ~ .dashboard .top{
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.income-btn:hover {
+.new-btn:hover {
 	text-decoration: none;
 	color: var(--text-color);
 }
@@ -219,6 +219,12 @@ nav.close ~ .dashboard .top{
 	border: none;
 }
 
-.table tbody td{
+.table tbody td {
 	color: var(--black-light-color);
+
+	
 }
+
+
+
+
