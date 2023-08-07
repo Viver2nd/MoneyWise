@@ -20,9 +20,18 @@ def dashboard(request):
     balance += int(account.balance)
   budgets = Budget.objects.filter(user=request.user)
 
+  filtered_incomes = Income.objects.filter(account__in=accounts)
+  incomes = [income.amount for income in filtered_incomes]
+  total_incomes = sum(incomes)
+
+  filtered_expenses = Expense.objects.filter(account__in=accounts)
+  expenses = [expense.amount for expense in filtered_expenses]
+  total_expenses = sum(expenses)
+
   return render(request, 'dashboard.html', {
     'accounts': accounts, 'balance': balance,
-    'budgets': budgets
+    'budgets': budgets, 'total_incomes': total_incomes,
+    'total_expenses': total_expenses
   })
 
 
@@ -83,11 +92,24 @@ def transactions(request):
   # Pass through relevent data 
 
   accounts = Account.objects.filter(user=request.user)
+  budgets = Budget.objects.filter(user=request.user).first()
   expenses = Expense.objects.filter(account__in=accounts)
   incomes = Income.objects.filter(account__in=accounts)
 
+
+
+  incomes_list = [income.amount for income in incomes]
+  total_incomes = sum(incomes_list)
+
+  expenses_list = [expense.amount for expense in expenses]
+  total_expenses = sum(expenses_list)
+
+  balance = total_incomes - total_expenses
+
   return render(request, 'transactions/transactions.html', {
-    'incomes': incomes, 'expenses': expenses, 'accounts': accounts
+    'incomes': incomes, 'expenses': expenses, 'accounts': accounts,
+    'budgets': budgets, 'total_incomes': total_incomes,
+    'total_expenses': total_expenses, 'balance': balance
   })
 
 
