@@ -228,49 +228,40 @@ nav.close ~ .dashboard .top{
 .table tbody td {
 	color: var(--black-light-color);
 }
-.dash-card-container{
-	display: flex;
-	flex-wrap: wrap;
+
+th.date {
+	cursor: pointer;
 }
 
-.dash-card{
-	justify-content: space-between;
-	display: flex;
+.dropdown button{
+	border-radius: 30px;
+	background-color: #6503ab;
+	height: 60px;
+	width:200px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	font-size: 20px;
+	color: white;
+}
+
+.dropdown button:hover {
+	color: white;
+	background-color: #53018d;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.dropdown-menu{
 	background-color: var(--panel-color);
-	border-radius: 25px;
-	padding:50px 30px;
-	width: 350px;
-	height: 200px;
-	margin:20px;
-	align-items: center;
-}
-.dash-card i{
-	height: 70px;
-	width: 70px;
-	font-size: 35px;
-	padding-top:6px;
-	padding-left:17px;
-	border-radius: 50%;
-}
-.dash-card .uil-balance-scale{
-	background-color: #03EF62;
-}
-.dash-card .uil-money-stack{
-	background-color: #60e7ff;
-}
-.dash-card .uil-download-alt{
-	background-color: #974DFF;
-}
-.dash-card .uil-upload-alt{
-	background-color: #ff931e;
-}
-.dash-card-left{
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	border-radius: 20px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	border: none;
 }
 
-
-
-
+.dropdown-item{
+	color: var(--black-light-color);
+}
+.dropdown-item:hover{
+	border-radius: 10px;
+	background-color: var(--primary-color);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
