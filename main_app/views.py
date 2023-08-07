@@ -6,6 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Account, Income, Expense, Budget
+from django.http import JsonResponse
+import requests
+
 
 
 @login_required
@@ -15,7 +18,7 @@ def dashboard(request):
   balance = 0
   for account in accounts: 
     balance += int(account.balance)
-  budgets = Budget.objects.get(user=request.user)
+  budgets = Budget.objects.filter(user=request.user)
 
   return render(request, 'dashboard.html', {
     'accounts': accounts, 'balance': balance,
@@ -32,14 +35,23 @@ def accounts(request):
   })
 
 
+
 @login_required
-def budget(request):
+def budgets(request):
   # Pass through relevent data 
 
+
   budgets = Budget.objects.filter(user=request.user)
-  return render(request, 'budget.html', {
+  return render(request, 'budgets.html', {
     'budgets': budgets
   })
+
+
+@login_required
+def stocks(request):
+
+
+  return render(request, 'stocks.html') 
 
 
 @login_required
