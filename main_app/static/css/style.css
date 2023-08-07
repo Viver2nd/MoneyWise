@@ -112,6 +112,10 @@ nav.close li a .link-name{
 	opacity: 0;
 	pointer-events: none;
 }
+nav.close .logo_name{
+	opacity: 0;
+	pointer-events: none;
+}
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name{
 	color: var(--text-color);
@@ -169,9 +173,11 @@ nav.close ~ .dashboard{
 }
 
 .dashboard .top{
+	background-color: var(--panel-color);
 	position: fixed;
 	top:0;
 	left:250px;
+	overflow: hidden;
 	display: flex;
 	width: calc(100% - 250px);
 	justify-content: space-between;
@@ -179,6 +185,7 @@ nav.close ~ .dashboard{
 	align-items: center;
 	transition: var(--trans-05);
 }
+
 nav.close ~ .dashboard .top{
 	left:73px;
 	width: calc(100% - 73px);
@@ -211,7 +218,6 @@ nav.close ~ .dashboard .top{
 	border-radius: 30px;
 	border: none;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-
 }
 
 .table thead th{
@@ -221,8 +227,48 @@ nav.close ~ .dashboard .top{
 
 .table tbody td {
 	color: var(--black-light-color);
+}
+.dash-card-container{
+	display: flex;
+	flex-wrap: wrap;
+}
 
-	
+.dash-card{
+	justify-content: space-between;
+	display: flex;
+	background-color: var(--panel-color);
+	border-radius: 25px;
+	padding:50px 30px;
+	width: 350px;
+	height: 200px;
+	margin:20px;
+	align-items: center;
+}
+.dash-card i{
+	height: 70px;
+	width: 70px;
+	font-size: 35px;
+	padding-top:6px;
+	padding-left:17px;
+	border-radius: 50%;
+}
+.dash-card .uil-balance-scale{
+	background-color: #03EF62;
+}
+.dash-card .uil-money-stack{
+	background-color: #60e7ff;
+}
+.dash-card .uil-download-alt{
+	background-color: #974DFF;
+}
+.dash-card .uil-upload-alt{
+	background-color: #ff931e;
+}
+.dash-card-left{
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 
