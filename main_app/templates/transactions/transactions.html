@@ -25,9 +25,7 @@
                             <h4>Incomes</h4>
                             <i class="uil uil-download-alt"></i> <!-- Add your icon here -->
                         </div>
-                        {% for account in accounts %}
-                        <h6>£{{ account.balance }}</h6>
-                        {% endfor %}
+                        <h6>£{{ total_incomes }}</h6>
                     </div>
                 </a>
             </div>
@@ -40,9 +38,7 @@
                             <h4>Expenses</h4>
                             <i class="uil uil-upload-alt"></i> <!-- Add your icon here -->
                         </div>
-                        {% for account in accounts %}
-                        <h6>£{{ account.balance }}</h6>
-                        {% endfor %}
+                        <h6>£{{ total_expenses }}</h6>
                     </div>
                 </a>
             </div>
@@ -59,9 +55,7 @@
                             <h4>Current balance</h4>
                             <i class="uil uil-balance-scale"></i> <!-- Add your icon here -->
                         </div>
-                        {% for account in accounts %}
-                        <h6>£{{ account.balance }}</h6>
-                        {% endfor %}
+                        <h6>£{{ balance }}</h6>
                     </div>
                 </a>
             </div>
