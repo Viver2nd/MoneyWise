@@ -218,6 +218,31 @@ nav.close ~ .dashboard .top{
 	border-radius: 30px;
 	border: none;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: space-between;
+}
+
+.d-flex  i{
+	height: 70px;
+	width: 70px;
+	font-size: 35px;
+	padding-top:6px;
+	padding-left:17px;
+	border-radius: 50%;
+	color: #05192D;
+}
+
+.uil-balance-scale{
+	background-color: #03EF62;
+}
+.uil-money-stack{
+	background-color: #60e7ff;
+}
+.uil-download-alt{
+	background-color: #974DFF;
+}
+.uil-upload-alt{
+	background-color: #ff931e;
 }
 
 .table thead th{
@@ -228,14 +253,56 @@ nav.close ~ .dashboard .top{
 .table tbody td {
 	color: var(--black-light-color);
 }
+.dash-card-container{
+	display: flex;
+	flex-wrap: wrap;
+}
 
+
+.dash-card{
+	justify-content: space-between;
+	display: flex;
+	background-color: var(--panel-color);
+	border-radius: 25px;
+	padding:50px 30px;
+	width: 350px;
+	height: 200px;
+	margin:20px;
+	align-items: center;
+}
+.dash-card i{
+	height: 70px;
+	width: 70px;
+	font-size: 35px;
+	padding-top:6px;
+	padding-left:17px;
+	border-radius: 50%;
+}
+.dash-card .uil-balance-scale{
+	background-color: #03EF62;
+}
+.dash-card .uil-money-stack{
+	background-color: #60e7ff;
+}
+.dash-card .uil-download-alt{
+	background-color: #974DFF;
+}
+.dash-card .uil-upload-alt{
+	background-color: #ff931e;
+}
+.dash-card-left{
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
 th.date {
 	cursor: pointer;
 }
 
 .dropdown button{
 	border-radius: 30px;
-	background-color: #6503ab;
+	background-color: #0afca7;
 	height: 60px;
 	width:200px;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -245,7 +312,7 @@ th.date {
 
 .dropdown button:hover {
 	color: white;
-	background-color: #53018d;
+	background-color: #004f2d;
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -255,6 +322,8 @@ th.date {
 	border-radius: 20px;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 	border: none;
+	transform: translateY(-10px);
+	transition: opacity 0.3s ease, transform 0.5s ease;
 }
 
 .dropdown-item{
