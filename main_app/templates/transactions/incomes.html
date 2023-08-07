@@ -38,13 +38,13 @@
 </div>
 <script>
     $(document).ready(function() {
-        var ascending = true; // Default sort order
+        let ascending = true; // Default sort order
 
         function sortByDate() {
-            var rows = $('#income-table tbody tr').get();
+            let rows = $('#income-table tbody tr').get();
             rows.sort(function(a, b) {
-                var dateA = new Date($(a).find('td:eq(2)').text());
-                var dateB = new Date($(b).find('td:eq(2)').text());
+                let dateA = new Date($(a).find('td:eq(2)').text());
+                let dateB = new Date($(b).find('td:eq(2)').text());
                 if (ascending) {
                     return dateA - dateB;
                 } else {
