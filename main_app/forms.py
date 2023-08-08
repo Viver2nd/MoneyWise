@@ -1,7 +1,22 @@
 from django.forms import ModelForm
-from .models import Account
+from .models import Account, Income, Expense
 
-class AccountForm(ModelForm):
+
+class IncomeForm(ModelForm):
   class Meta:
-    model = Account
-    fields = ['name']
+    model = Income
+    fields = ['amount', 'category', 'description', 'account']
+
+  def __init__(self, user, *args, **kwargs):
+    super(IncomeForm, self).__init__(*args, **kwargs)
+    self.fields['account'].queryset = Account.objects.filter(user=user)
+
+
+class ExpenseForm(ModelForm):
+  class Meta:
+    model = Expense
+    fields = ['amount', 'category', 'description', 'account']
+
+  def __init__(self, user, *args, **kwargs):
+    super(ExpenseForm, self).__init__(*args, **kwargs)
+    self.fields['account'].queryset = Account.objects.filter(user=user)

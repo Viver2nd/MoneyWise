@@ -1,13 +1,57 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Account</h1>
+<style>
+  .delete-form{
+    background-color: var(--panel-color);
+    border-radius: 25px;
+    padding:40px;
+    margin:20px;
+    align-items: left;
+    box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+  }
+  h1, h4{
+    margin-bottom: 30px;
+  }
 
-  <h4>Are you sure you want to delete {{ object.name }}?</h4>
+  h4 span{
+    color: #974DFF;
+  }
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes Delete" class="btn">
-    <a href="{% url 'accounts' %}">Cancel</a>
-  </form>
+  form .btn{
+      background-color: #974DFF;
+      color: #FFF;
+      border-radius: 25px;
+      padding:10px;
+      width:110px;
+      border: none;
+      margin-right: 50px;
+  }
+  form .btn:hover{
+    color: white;
+  }
+
+  form a{
+    color:#974DFF;
+    text-decoration: none;
+  }
+  form a:hover{
+    color:#974DFF;
+  }
+
+</style>
+
+<div class="delete-form">
+    <h1>Delete Account</h1>
+
+    <h4>Are you sure you want to delete <span>{{ object.name }}</span>?</h4>
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Yes Delete" class="btn">
+      <a href="{% url 'accounts' %}">Cancel</a>
+    </form>
+</div>
 {% endblock %}

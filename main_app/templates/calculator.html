@@ -45,6 +45,7 @@
             <tr>
                 <th>Year</th>
                 <th>Amount</th>
+                <th>Interest</th>
                 <th>Contribution</th>
             </tr>
         </thead>
@@ -60,10 +61,13 @@
         const cont = parseInt(contribution);
         result = [];
 
+
         for (let i = 0; i < years; i++) {
+            let before = amount
             amount = amount * percent;
+            let interest = amount - before;
             amount += cont
-            result.push({year: i + 1, amount: amount, contribution: cont})
+            result.push({year: i + 1, amount: amount, interest: interest, contribution: cont})
         }
         return result;
     }
@@ -82,6 +86,7 @@
                     `<tr>
                     <td>${res.year}</td>
                     <td>£${res.amount.toLocaleString("en-US", format)}</td>
+                    <td>£${res.interest.toLocaleString("en-US", format)}</td>
                     <td>£${res.contribution.toLocaleString("en-US", format)}</td>
                     </tr>`
                 )

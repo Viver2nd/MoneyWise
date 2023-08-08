@@ -13,7 +13,7 @@
     <button type="submit" class="btn btn-primary">Find</button>
 </form>
 <br><br>
-<p>Warning the api only lets you do 100 calls per day, so might be buggy in development if I've been spamming it.</p>
+<p>Warning: the api only lets you do 100 calls per day, so might be buggy in development if I've been spamming it.</p>
 <div id="stock-section">
     <h2></h2>
 </div>
@@ -22,17 +22,11 @@
 <script>
     const baseURL = 'https://www.alphavantage.co/query';
     const apiKey = 'KEDWTVV13Y63RVQR';
-
-
     let outputType = 'TIME_SERIES_MONTHLY';
-
 
     document.getElementById('stock-form').addEventListener('submit', function(event) {
         event.preventDefault();
         let [stock, name] = document.getElementById('stock-search').value.split('-');
-
-
-
 
         const url = `${baseURL}?function=${outputType}&symbol=${stock}&apikey=${apiKey}`;
         fetch(url)
@@ -49,10 +43,7 @@
         .catch(error => {
             console.error('Error fetching data:', error);
         })
-
     })
-
-
 </script>
 
 {% endblock %}

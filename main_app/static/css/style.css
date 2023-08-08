@@ -6,6 +6,11 @@
 	font-family: 'Inter', sans-serif;
 }
 
+#card-text {
+	text-decoration: none;
+	color: black;
+}
+
 :root {
 	/* Colors */
 	--primary-color: #EDF3FB;
@@ -258,7 +263,6 @@ nav.close ~ .dashboard .top{
 	flex-wrap: wrap;
 }
 
-
 .dash-card{
 	justify-content: space-between;
 	display: flex;
@@ -346,10 +350,11 @@ th.date {
 	border-top: 1px solid #CCC;
 	font-size: 25px;
 	display: flex;
-	justify-content: space-around;
+	/*justify-content: space-between;*/
 }
 .wallet-icons i{
 	color: #974DFF;
+	margin-left:80px;
 }
 
 .wallet span{
@@ -360,6 +365,7 @@ th.date {
 }
 
 .form-container{
+	margin:0 auto;
 	background-color: var(--panel-color);
 	border-radius: 25px;
 	padding: 30px;
@@ -371,10 +377,9 @@ th.date {
 	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 }
 
-
 .form-container table{
-	margin-top: 30px;
-	width: 100%;
+	margin: 30px auto;
+	width: 70%;
 	border-radius: 15px;
 }
 .form-container table input{

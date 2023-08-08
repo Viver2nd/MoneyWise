@@ -17,7 +17,11 @@
             <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Current Budget</h4>
-                    <h4>£{{ budgets.0.amount }}</h4>
+                    {% if budgets %}
+                        <h4>£{{ budgets.0.amount }}</h4>
+                    {% else %}
+                        <h4>No Budgets</h4>
+                    {% endif %}
                 </div>
                 <i class="uil uil-money-stack"></i>
             </div>
@@ -42,19 +46,11 @@
         </a>
     </div>
 
-<!-- This is just to display during development, feel free to change -->
-<!--{% for account in accounts %}
-    Account Name: {{ account.name }} <br>
-    Balance: {{ account.balance }} <br><br>
-    Incomes: {% for income in account.income_set.all %}
-        <br>- You made {{ income.amount }} on {{ income.category }} at {{ income.date }}
-    {% endfor %}
-    <br><br>
-    Expenses: {% for expense in account.expense_set.all %}
-        <br>- You spent {{ expense.amount }} on {{ expense.category }} at {{ expense.date }}
-    {% endfor %} <br><br>
-{% endfor %}-->
 
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
 
+    
 
 {% endblock %}
