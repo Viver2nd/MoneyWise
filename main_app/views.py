@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Account, Income, Expense, Budget
+from .forms import IncomeForm, ExpenseForm
 from django.http import JsonResponse
 import requests
 
@@ -199,12 +200,17 @@ class AccountUpdate(LoginRequiredMixin, UpdateView):
 
 class AccountDelete(LoginRequiredMixin, DeleteView):
   model = Account
-  success_url = '/accounts'
+  success_url = '/accounts/accounts'
 
 
 class IncomeCreate(LoginRequiredMixin, CreateView):
   model = Income
-  fields = ['amount', 'category', 'description', 'account']
+  form_class = IncomeForm
+
+  def get_form_kwargs(self):
+    kwargs = super(IncomeCreate, self).get_form_kwargs()
+    kwargs['user'] = self.request.user 
+    return kwargs
 
   def form_valid(self, form):
     response = super().form_valid(form)
@@ -215,7 +221,12 @@ class IncomeCreate(LoginRequiredMixin, CreateView):
 
 class IncomeUpdate(LoginRequiredMixin, UpdateView):
   model = Income
-  fields = ['amount', 'category', 'description', 'account']
+  form_class = IncomeForm
+
+  def get_form_kwargs(self):
+    kwargs = super(IncomeUpdate, self).get_form_kwargs()
+    kwargs['user'] = self.request.user 
+    return kwargs
 
   def form_valid(self, form):
     response = super().form_valid(form)
@@ -236,7 +247,12 @@ class IncomeDelete(LoginRequiredMixin, DeleteView):
 
 class ExpenseCreate(LoginRequiredMixin, CreateView):
   model = Expense
-  fields = ['amount', 'category', 'description', 'account']
+  form_class = ExpenseForm
+
+  def get_form_kwargs(self):
+    kwargs = super(ExpenseCreate, self).get_form_kwargs()
+    kwargs['user'] = self.request.user
+    return kwargs
 
   def form_valid(self, form):
     response = super().form_valid(form)
@@ -246,7 +262,12 @@ class ExpenseCreate(LoginRequiredMixin, CreateView):
 
 class ExpenseUpdate(LoginRequiredMixin, UpdateView):
   model = Expense
-  fields = ['amount', 'category', 'description', 'account']
+  form_class = ExpenseForm
+
+  def get_form_kwargs(self):
+    kwargs = super(ExpenseUpdate, self).get_form_kwargs()
+    kwargs['user'] = self.request.user
+    return kwargs
 
   def form_valid(self, form):
     response = super().form_valid(form)
