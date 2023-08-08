@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Budgets Page</h1>
+<h1>Monthly Budget</h1>
 <br>
-<a href="{% url 'budget_create' %}">New Budget</a>
-<br><br>
 
-{% for budget in budgets %}
+
+
+{% if budget %}
     {{ budget }} 
     <a href="{% url 'budget_update' budget.id %}"><i class="fa fa-edit"></i></a>
     <a href="{% url 'budget_delete' budget.id %}"><i class="fa fa-trash"></i></a>
     <br><br>
-{% endfor %}
-
+{% else %}
+    <h2>You have no budget</h2><br>
+    <a href="{% url 'budget_create' %}">Create Budget</a>
+{% endif %}
 {% endblock %}
