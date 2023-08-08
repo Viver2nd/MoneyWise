@@ -116,25 +116,42 @@
 			sidebar = body.querySelector("nav");
 			sidebarToggle = body.querySelector(".sidebar-toggle");
 
+	// Functions
+
 	function toggleDarkMode() {
         body.classList.toggle("dark");
         // Store the dark mode preference in localStorage
         localStorage.setItem('darkMode', body.classList.contains('dark'));
     }
 
+	function toggleSidebar() {
+        sidebar.classList.toggle("close");
+        // Store the sidebar state in localStorage
+        localStorage.setItem('sidebarClosed', sidebar.classList.contains('close'));
+    }
+
+	// Event Listeners
+
     modeToggle.addEventListener("click", () => {
         toggleDarkMode();
     });
 
-    // Check if dark mode preference is stored in localStorage
+	sidebarToggle.addEventListener("click", () => {
+        toggleSidebar();
+    });
+
+    // Check if  preference is stored in localStorage
     const isDarkMode = JSON.parse(localStorage.getItem('darkMode'));
     if (isDarkMode) {
         body.classList.add('dark');
     }
 
-    sidebarToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-    });
+	const isSidebarClosed = JSON.parse(localStorage.getItem('sidebarClosed'));
+    if (isSidebarClosed) {
+        sidebar.classList.add('close');
+    }
+
+    
 
 
 
