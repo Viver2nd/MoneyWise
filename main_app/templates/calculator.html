@@ -6,8 +6,9 @@
 .calc-input-box {
     background-color: #FFFFFF;
     border-style: none;
-    border-radius: 1.25vmin;
-    height: 3vmin;
+    border-radius: 50vmin;
+    height: 30px;
+    padding: 5px;
     box-shadow: 2px 2px 4px #c3c3c3;
 }
 
@@ -21,31 +22,40 @@
 
 </style>
 
-<h1>Compound Interest Calculator</h1>
-<br>
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <h1>Compound Interest Calculator</h1>
+    <br>
 
 
-<form>
-    <label for="startingAmount" style="padding-right: 6.25vmin;" class="calc-text">Initial Investment <strong><span id="form-icon">(£)</span></strong></label>
-    <input type="number" min="0" required id="startingAmount" name="startingAmount" class="calc-input-box"><br>
-    <label for="contribution" style="padding-right: 3vmin;" class="calc-text">Yearly Contribution <strong><span id="form-icon">  (£)</span></strong></label>
-    <input type="number" required id="contribution" name="contribution" class="calc-input-box"><br>
-    <label for="yearlyInterest" style="padding-right: 2.75vmin;" class="calc-text">Yearly Interest Rate <strong><span id="form-icon">(%)</span></strong></label>
-    <input type="number" required id="yearlyInterest" name="yearlyInterest" class="calc-input-box"><br>
-    <label for="years" style="padding-right: 1vmin;" class="calc-text">Length of Time in Years</label>
-    <input type="number" min="1" required id="years" name="years" class="calc-input-box"><br>
-    <button class="btn btn-primary" style="margin-top: 3.5vmin;">Calculate</button>
-</form>
+    <form class="d-flex flex-column justify-content-center align-items-center">
+        <div>
+            <label for="startingAmount" style="padding-right: 5.25vmin;" class="calc-text">Initial Investment <strong><span id="form-icon">(£)</span></strong></label>
+            <input type="number" min="0" required id="startingAmount" name="startingAmount" class="calc-input-box"><br>
+        </div>
+        <div>
+            <label for="contribution" style="padding-right: 3vmin;" class="calc-text">Yearly Contribution <strong><span id="form-icon">(£)</span></strong></label>
+            <input type="number" required id="contribution" name="contribution" class="calc-input-box"><br>
+        </div>
+        <div>
+            <label for="yearlyInterest" style="padding-right: 2.75vmin;" class="calc-text">Yearly Interest Rate <strong><span id="form-icon">(%)</span></strong></label>
+            <input type="number" required id="yearlyInterest" name="yearlyInterest" class="calc-input-box"><br>
+        </div>
+        <div>
+            <label for="years" style="padding-right: 1vmin;" class="calc-text">Length of Time in Years</label>
+            <input type="number" min="1" required id="years" name="years" class="calc-input-box"><br>
+        </div>
+        <button class="btn btn-primary" style="margin-top: 3.5vmin;">Calculate</button>
+    </form>
 
-<hr>
-<br>
-<h2></h2>
-<br>
 
-<div id="table-section">
+    <br>
+    <h2></h2>
+    <br>
 
+    <div id="table-section">
+
+    </div>
 </div>
-
 
 <script>
     const button = document.querySelector('button');
@@ -113,7 +123,7 @@
                 
             })
             document.getElementById('table-section').innerHTML = table;
-            document.querySelector('h2').innerText = `In ${years} years, you will have £${result[result.length - 1].amount.toLocaleString("en-US", format)}!`
+            document.querySelector('h2').innerText = `In ${years} years, you will have £${result[result.length - 1].amount.toLocaleString("en-US", format)}`
             document.querySelector('tbody').innerHTML = string.join('');
         }
     })

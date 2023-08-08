@@ -1,18 +1,97 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Monthly Budget</h1>
+
+<h1>Budget for {{ month }}</h1>
 <br>
 
-
+<!-- Feel free to change all styling etc -->
 
 {% if budget %}
-    {{ budget }} 
+    Budget for {{ month }}: £{{ budget.amount }} 
     <a href="{% url 'budget_update' budget.id %}"><i class="fa fa-edit"></i></a>
     <a href="{% url 'budget_delete' budget.id %}"><i class="fa fa-trash"></i></a>
+    <br><br>
+    Total Spent for {{ month }}: £{{ monthly_expenses_sum }}
+    <br><br>
+    Budget remaining: £{{ budget_remaining }}
+
     <br><br>
 {% else %}
     <h2>You have no budget</h2><br>
     <a href="{% url 'budget_create' %}">Create Budget</a>
 {% endif %}
+
+
+{% if budget %}
+<!-- This div contains the chart -->
+<div id="chart-section" style="height: 400px; width: 400px;">
+    <canvas id="myChart"></canvas>
+</div>
+
+
+<script>
+    const ctx = document.getElementById('myChart')
+
+    
+    new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Budget', 'Budget Remaining', 'Total Spent'],
+        datasets: [{
+            label: '{{ month }} Budget Details',
+            // Don't worry about the red lines, it works fine but VScode 
+            // gets confused when you put python variables in JS
+            data: [{{ budget.amount }}, {{ budget_remaining }}, {{ monthly_expenses_sum }}],
+            backgroundColor: [
+                'rgba(54, 162, 235, 0.9)',   // Budget
+                'rgba(75, 222, 142, 0.9)',   // Budget Remaining
+                'rgba(255, 55, 55, 0.9)',   // Total Spent
+            ],
+            borderColor: 'rgba(0, 0, 0, 1)',
+            borderWidth: 0,
+        }]
+    },
+    options: {
+        maintainAspectRatio: true,
+        aspectRatio: 500 / 500,
+        scales: {
+            y: {
+                grid: {
+                color: 'rgba(0, 0, 0, 0.1)',
+                lineWidth: 0, // For grid lines
+            },
+                beginAtZero: true,
+                stacked: true
+            },
+            x: {
+                grid: {
+                color: 'rgba(0, 0, 0, 0.1)',
+                lineWidth: 0, // For grid lines
+            },
+                stacked: true
+            }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            }
+        },
+        elements: {
+        line: {
+            borderColor: 'rgba(0, 0, 0, 1)', // Example line color
+            borderWidth: 19 // Example line width
+        }
+    }
+    }
+});
+</script>
+{% endif %}
+
+
+
 {% endblock %}
+
+
+
