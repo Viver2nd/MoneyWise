@@ -32,6 +32,14 @@
     .more-details .detail .exp{
         color: red;
     }
+    .detail-icons{
+	border-top: 1px solid #CCC;
+	font-size: 25px;
+	margin: 10px;
+    }
+    .detail-icons i{
+        color: #974DFF;
+    }
 
 </style>
 <section>
@@ -46,6 +54,10 @@
         <div class="detail"><p>User:</p><h5>{{ account.user }} </h5></div>
         <div class="detail"><p>Total of Incomes:</p><h5 class="inc">£&nbsp;{{ total_incomes }}</h5></div>
         <div class="detail"><p>Total of Expenses:</p><h5 class="exp">£&nbsp;{{ total_expenses }}</h5></div>
+        <div class="detail-icons d-flex justify-content-center align-items-center">
+            <a href="{% url 'account_update' account.id %}"><i class="uil uil-edit"></i></a>
+            <a href="{% url 'account_delete' account.id %}"><i class="uil uil-trash-alt"></i></a>
+        </div>
         </div>
     </div>
 </section>

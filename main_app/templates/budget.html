@@ -24,9 +24,35 @@
 
 
 {% if budget %}
-<!-- This div contains the chart -->
-<div id="chart-section" style="height: 400px; width: 400px;">
-    <canvas id="myChart"></canvas>
+
+
+<!-- Delete this table if you want, it's just to pad out the page -->
+<br>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-center">Expenses for {{ month }}</h4>
+            <br>
+            <table id="income-table" class="table">
+                <thead>
+                    <tr>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th class="date">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expenses %}
+                    <tr>
+                        <td class="text-danger">{{ expense.amount }}</td>
+                        <td>{{ expense.category }}</td>
+                        <td>{{ expense.date|date:"d/m/Y" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 

@@ -21,7 +21,7 @@
 <hr>
 
 <!-- This div contains the chart -->
-<div id="chart-section">
+<div id="chart-section" style="height: 600px; width: 600px;">
     
 </div>
 
@@ -134,26 +134,26 @@ document.getElementById('chart-section').innerHTML= '<canvas id="myChart"></canv
     }
 
     new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: dates,
-        datasets: [{
-            label: 'Dummy Data',
-            data: prices,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-            fill: false,
-            pointRadius: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: false
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Dummy Data',
+                data: prices,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: false,
+                pointRadius: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
             }
         }
-    }
-});
+    });
 </script>
 
 
