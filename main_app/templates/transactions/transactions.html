@@ -68,13 +68,13 @@
         </div>
         <div class="col-md-6">
             <div class="card" style="max-width: 100%;">
-                <a href="{% url 'budgets' %}" class="new-btn">
+                <a href="{% url 'budget' %}" class="new-btn">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center" >
-                            <h4>Current Budget</h4>
+                            <h4>Monthly Budget</h4>
                             <i class="uil uil-money-stack"></i> <!-- Add your icon here -->
                         </div>
-                        <h6>£{{ budgets.amount }}</h6>
+                        <h6>£{{ budget.amount }}</h6>
                     </div>
                 </a>
             </div>
