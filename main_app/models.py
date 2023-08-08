@@ -46,7 +46,7 @@ class Income(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.account.name} made {self.amount} on {self.category} at {self.date}"
+        return f"You gained £{self.amount} in your {self.account.name} account through {self.category} at {self.date}"
     
     def get_absolute_url(self):
         return reverse('incomes')
@@ -67,7 +67,7 @@ class Expense(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.account.name} spent {self.amount} on {self.category} at {self.date}"
+        return f"You spent £{self.amount} with your {self.account.name} account on {self.category} at {self.date}"
     
     def get_absolute_url(self):
         return reverse('expenses')

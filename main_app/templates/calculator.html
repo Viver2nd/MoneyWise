@@ -23,37 +23,42 @@
 </style>
 
 <div class="d-flex flex-column justify-content-center align-items-center">
-    <h1>Compound Interest Calculator</h1>
-    <br>
-
-
-    <form class="d-flex flex-column justify-content-center align-items-center">
-        <div>
-            <label for="startingAmount" style="padding-right: 5.25vmin;" class="calc-text">Initial Investment <strong><span id="form-icon">(£)</span></strong></label>
-            <input type="number" min="0" required id="startingAmount" name="startingAmount" class="calc-input-box"><br>
+    
+    <div class="container d-flex justify-content-between align-items-center">
+        <form class="d-flex flex-column justify-content-center align-items-center">
+            <h1>Compound Interest Calculator</h1>
+            <br><br>
+            <div>
+                <label for="startingAmount" style="padding-right: 5.25vmin;" class="calc-text">Initial Investment <strong><span id="form-icon">(£)</span></strong></label>
+                <input type="number" min="0" required id="startingAmount" name="startingAmount" class="calc-input-box"><br>
+            </div>
+            <div>
+                <label for="contribution" style="padding-right: 3vmin;" class="calc-text">Yearly Contribution <strong><span id="form-icon">(£)</span></strong></label>
+                <input type="number" required id="contribution" name="contribution" class="calc-input-box"><br>
+            </div>
+            <div>
+                <label for="yearlyInterest" style="padding-right: 2.75vmin;" class="calc-text">Yearly Interest Rate <strong><span id="form-icon">(%)</span></strong></label>
+                <input type="number" required id="yearlyInterest" name="yearlyInterest" class="calc-input-box"><br>
+            </div>
+            <div>
+                <label for="years" style="padding-right: 1vmin;" class="calc-text">Length of Time in Years</label>
+                <input type="number" min="1" required id="years" name="years" class="calc-input-box"><br>
+            </div>
+            <button class="btn btn-primary" style="margin-top: 3.5vmin;">Calculate</button>
+        </form>
+        <div id="chart-section" class="d-flex justify-content-center align-items-center" style="height: 600px; width: 600px;"> 
+            
         </div>
-        <div>
-            <label for="contribution" style="padding-right: 3vmin;" class="calc-text">Yearly Contribution <strong><span id="form-icon">(£)</span></strong></label>
-            <input type="number" required id="contribution" name="contribution" class="calc-input-box"><br>
-        </div>
-        <div>
-            <label for="yearlyInterest" style="padding-right: 2.75vmin;" class="calc-text">Yearly Interest Rate <strong><span id="form-icon">(%)</span></strong></label>
-            <input type="number" required id="yearlyInterest" name="yearlyInterest" class="calc-input-box"><br>
-        </div>
-        <div>
-            <label for="years" style="padding-right: 1vmin;" class="calc-text">Length of Time in Years</label>
-            <input type="number" min="1" required id="years" name="years" class="calc-input-box"><br>
-        </div>
-        <button class="btn btn-primary" style="margin-top: 3.5vmin;">Calculate</button>
-    </form>
-
+    </div>
 
     <br>
     <h2></h2>
-    <br>
+    <div class="container mt-4">
+        <div class="card">
+            <div id="table-section">
 
-    <div id="table-section">
-
+            </div>
+        </div>
     </div>
 </div>
 
@@ -70,13 +75,13 @@
     };
 
     const table = `
-        <table class="table table-bordered table-striped">
+        <table class="table table-striped">
         <thead>
             <tr>
-                <th>Year</th>
-                <th>Amount</th>
-                <th>Interest</th>
-                <th>Contribution</th>
+                <th class='text-center'>Year</th>
+                <th class='text-center'>Amount</th>
+                <th class='text-center'>Interest</th>
+                <th class='text-center'>Contribution</th>
             </tr>
         </thead>
         <tbody>
@@ -104,20 +109,21 @@
 
     button.addEventListener('click', function (event) {
         event.preventDefault();
-        start = document.getElementById('startingAmount').value;
-        contribution = document.getElementById('contribution').value;
-        int = document.getElementById('yearlyInterest').value;
-        years = document.getElementById('years').value;
+        const start = document.getElementById('startingAmount').value;
+        const contribution = document.getElementById('contribution').value;
+        const int = document.getElementById('yearlyInterest').value;
+        const years = document.getElementById('years').value;
+        document.getElementById('chart-section').innerHTML = '<canvas id="myChart"></canvas>'
         if (start && contribution && int && years) {
             let result = compound(start, contribution, int, years)
             let string = []
             result.forEach(res => {
                 string.push(
                     `<tr>
-                    <td>${res.year}</td>
-                    <td>£${res.amount.toLocaleString("en-US", format)}</td>
-                    <td>£${res.interest.toLocaleString("en-US", format)}</td>
-                    <td>£${res.contribution.toLocaleString("en-US", format)}</td>
+                    <td class='text-center'>${res.year}</td>
+                    <td class='text-center'>£${res.amount.toLocaleString("en-US", format)}</td>
+                    <td class='text-center'>£${res.interest.toLocaleString("en-US", format)}</td>
+                    <td class='text-center'>£${res.contribution.toLocaleString("en-US", format)}</td>
                     </tr>`
                 )
                 
@@ -125,6 +131,61 @@
             document.getElementById('table-section').innerHTML = table;
             document.querySelector('h2').innerText = `In ${years} years, you will have £${result[result.length - 1].amount.toLocaleString("en-US", format)}`
             document.querySelector('tbody').innerHTML = string.join('');
+
+
+            const ctx = document.getElementById('myChart')
+
+            const labels = [];
+            const totals = [];
+            const interests = [];
+            const contributions = [];
+
+            result.forEach(row => {
+                labels.push(row.year);
+                totals.push(row.amount);
+                interests.push(row.interest);
+                contributions.push(row.contribution);
+            })
+
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total',
+                        data: totals,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 3,
+                        fill: false,
+                        pointRadius: 1
+                    }, {
+                        label: 'Interest',
+                        data: interests,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 3,
+                        fill: false,
+                        pointRadius: 1,
+                        hidden: true
+                    }, {
+                        label: 'Contribution',
+                        data: contributions,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 3,
+                        fill: false,
+                        pointRadius: 1,
+                        hidden: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+
         }
     })
 

@@ -177,7 +177,7 @@ def expenses(request):
   expenses = Expense.objects.filter(account__in=accounts)
 
   return render(request, 'transactions/expenses.html', {
-    'accounts': accounts, 'expenses': expenses
+    'expenses': expenses
   })
 
 
