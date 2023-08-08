@@ -3,11 +3,72 @@
 
 
 
-<h1>Transactions Page</h1>
+<div class="dropdown">
+    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+      Transactions
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#974DFF">Transactions</a>
+      <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#03EF62 ;">Incomes</a>
+      <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
+    </div>
+  </div>
 <br>
 {% if accounts %}
-    <a class="new-btn" href="{% url 'incomes' %}"><span class="link-name">Incomes</span></a>
-    <a class="new-btn" href="{% url 'expenses' %}"><span class="link-name">Expenses</span></a>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card" style="max-width: 100%;">
+                <a href="{% url 'incomes' %}" class="new-btn">
+                    <div class="card-body">
+                        <h4>Incomes</h4>
+                        {% for account in accounts %}
+                        <h6>£{{ account.balance }}</h6>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card" style="max-width: 100%;">
+                <a href="{% url 'expenses' %}" class="new-btn">
+                    <div class="card-body">
+                        <h4>Expenses</h4>
+                        {% for account in accounts %}
+                        <h6>£{{ account.balance }}</h6>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card" style="max-width: 100%;">
+                <a href="{% url 'incomes' %}" class="new-btn">
+                    <div class="card-body">
+                        <h4>Current Balance</h4>
+                        {% for account in accounts %}
+                        <h6>£{{ account.balance }}</h6>
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card" style="max-width: 100%;">
+                <a href="{% url 'expenses' %}" class="new-btn">
+                    <div class="card-body">
+                        <h4>Budget</h4>
+                        <h6>£{{ budgets.amount }}</h6>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
     <br>
     {% if incomes or expenses %}
 <div class="container mt-4">
