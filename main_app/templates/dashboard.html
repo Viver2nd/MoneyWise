@@ -27,9 +27,7 @@
             </div>
         </a>
         <a href="{% url 'incomes' %}" class="dash-card-link">
-            </a>
-        <a href="{% url 'incomes' %}" id="card-text">
-        <div class="dash-card">
+            <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Incomes</h4>
                     <h4>£{{ total_incomes }}</h4>
@@ -38,9 +36,7 @@
             </div>
         </a>
         <a href="{% url 'expenses' %}" class="dash-card-link">
-            </a>
-        <a href="{% url 'expenses' %}" id="card-text">
-        <div class="dash-card">
+            <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Expenses</h4>
                     <h4>£{{ total_expenses }}</h4>
@@ -48,12 +44,13 @@
                 <i class="uil uil-upload-alt"></i>
             </div>
         </a>
-        </a>
     </div>
 
 
     <div>
         <canvas id="myChart"></canvas>
     </div>
+
+    
 
 {% endblock %}
