@@ -1,21 +1,133 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if object %}
+<style>
+  .modern-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: var(--panel-color);
+  color: var(--text-color);
+  border-color: var(--panel-color);
+  box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+}
+
+.modern-form table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.modern-form table th,
+.modern-form table td {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.modern-form table th {
+  text-align: left;
+}
+
+.modern-form input[name="amount"] {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none; 
+  width: 100%; 
+  padding: 8px; 
+  font-size: 16px; 
+  background-color: transparent; 
+  transition: border-bottom 0.2s ease; 
+  color: var(--text-color);
+}
+
+.modern-form input[name="amount"]:focus {
+  border-bottom: 1px solid #007bff; 
+}
+
+.modern-form #id_category,#id_account {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  transition: border-bottom 0.2s ease;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+  width: 100%; 
+}
+
+.modern-form #id_category,#id_account:focus {
+  border-bottom: 1px solid #007bff; /* Change the border color on focus */
+}
+
+.modern-form textarea {
+  height: 32px;
+  width: 100%; 
+  border: none;
+  border-bottom: 1px solid #ddd;
+  transition: border-bottom 0.2s ease;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.modern-form textarea:focus {
+  border-bottom: 1px solid #007bff; 
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-buttons input[type="submit"],
+.form-buttons a {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-buttons input[type="submit"] {
+  background-color: var(--panel-color);
+  color: #FF931E;
+  border: none;
+  transition: .3s;
+}
+
+.form-buttons a {
+  background-color: var(--panel-color);
+  color: #333;
+  text-decoration: none;
+}
+
+.form-buttons input[type="submit"]:hover,
+.form-buttons a:hover {
+  background-color:#FF931E ;
+  box-shadow: 0 0 0 5px #ff921eb0;
+  color: #fff;
+}
+</style>
+
+
+<!-- Leaving the action empty makes the form post to the same url used to display it -->
+<form action="" method="POST" class="modern-form">
+  {% csrf_token %}
+  {% if object %}
   <h1>Edit {{ object.name }}</h1>
 {% else %}
   <h1>Add Expense</h1>
 {% endif %}
-
-
-<!-- Leaving the action empty makes the form post to the same url used to display it -->
-<form action="" method="POST">
-  {% csrf_token %}
   <table>
     {{ form.as_table }}
   </table>
-  <input type="submit" value="Submit" class="btn">
-  <a href="{% url 'expenses' %}">Cancel</a>
+  <div class="form-buttons">
+    <input type="submit" value="Submit" class="btn btn-primary">
+    <a href="{% url 'expenses' %}" class="btn btn-secondary">Cancel</a>
+  </div>
 </form>
 
 {% endblock %}
