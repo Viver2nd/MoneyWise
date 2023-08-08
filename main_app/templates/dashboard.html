@@ -27,7 +27,9 @@
             </div>
         </a>
         <a href="{% url 'incomes' %}" class="dash-card-link">
-            <div class="dash-card">
+            </a>
+        <a href="{% url 'incomes' %}" id="card-text">
+        <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Incomes</h4>
                     <h4>£{{ total_incomes }}</h4>
@@ -36,7 +38,9 @@
             </div>
         </a>
         <a href="{% url 'expenses' %}" class="dash-card-link">
-            <div class="dash-card">
+            </a>
+        <a href="{% url 'expenses' %}" id="card-text">
+        <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Expenses</h4>
                     <h4>£{{ total_expenses }}</h4>
@@ -44,21 +48,12 @@
                 <i class="uil uil-upload-alt"></i>
             </div>
         </a>
+        </a>
     </div>
 
-<!-- This is just to display during development, feel free to change -->
-<!--{% for account in accounts %}
-    Account Name: {{ account.name }} <br>
-    Balance: {{ account.balance }} <br><br>
-    Incomes: {% for income in account.income_set.all %}
-        <br>- You made {{ income.amount }} on {{ income.category }} at {{ income.date }}
-    {% endfor %}
-    <br><br>
-    Expenses: {% for expense in account.expense_set.all %}
-        <br>- You spent {{ expense.amount }} on {{ expense.category }} at {{ expense.date }}
-    {% endfor %} <br><br>
-{% endfor %}-->
 
-
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
 
 {% endblock %}

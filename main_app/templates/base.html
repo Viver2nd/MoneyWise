@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <nav>
@@ -107,6 +108,8 @@
 
     </footer>
 
+
+
     <script>
         const body = document.querySelector("body");
 			modeToggle = body.querySelector(".mode-toggle");
@@ -124,7 +127,29 @@
 			sidebarToggle.addEventListener("click", () => {
 				sidebar.classList.toggle("close");
 			})
-			
+
+			// Chart.js
+
+			const ctx = document.getElementById('myChart');
+
+			new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ['Current Balance', 'Current Budgets', 'Income', 'Expenses'],
+				datasets: [{
+				label: 'Financial Summary',
+				data: [1, 2, 3, 4],
+				borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+				y: {
+					beginAtZero: true
+				}
+				}
+			}
+			});
     </script>
 </body>
 </html>
