@@ -25,7 +25,7 @@
 
 {% if budget %}
 <!-- This div contains the chart -->
-<div id="chart-section">
+<div id="chart-section" style="height: 400px; width: 400px;">
     <canvas id="myChart"></canvas>
 </div>
 
@@ -37,28 +37,38 @@
     new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Budget', 'Total Spent', 'Budget Remaining'],
+        labels: ['Budget', 'Budget Remaining', 'Total Spent'],
         datasets: [{
             label: '{{ month }} Budget Details',
             // Don't worry about the red lines, it works fine but VScode 
             // gets confused when you put python variables in JS
-            data: [{{ budget.amount }}, {{ monthly_expenses_sum }}, {{ budget_remaining }}],
+            data: [{{ budget.amount }}, {{ budget_remaining }}, {{ monthly_expenses_sum }}],
             backgroundColor: [
                 'rgba(54, 162, 235, 0.9)',   // Budget
-                'rgba(255, 55, 55, 0.9)',   // Total Spent
                 'rgba(75, 222, 142, 0.9)',   // Budget Remaining
+                'rgba(255, 55, 55, 0.9)',   // Total Spent
             ],
             borderColor: 'rgba(0, 0, 0, 1)',
             borderWidth: 0,
         }]
     },
     options: {
+        maintainAspectRatio: true,
+        aspectRatio: 500 / 500,
         scales: {
             y: {
+                grid: {
+                color: 'rgba(0, 0, 0, 0.1)',
+                lineWidth: 0, // For grid lines
+            },
                 beginAtZero: true,
                 stacked: true
             },
             x: {
+                grid: {
+                color: 'rgba(0, 0, 0, 0.1)',
+                lineWidth: 0, // For grid lines
+            },
                 stacked: true
             }
         },
@@ -67,7 +77,13 @@
                 display: true,
                 position: 'top'
             }
+        },
+        elements: {
+        line: {
+            borderColor: 'rgba(0, 0, 0, 1)', // Example line color
+            borderWidth: 19 // Example line width
         }
+    }
     }
 });
 </script>
