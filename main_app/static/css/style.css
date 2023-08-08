@@ -189,6 +189,7 @@ nav.close ~ .dashboard{
 	padding:10px 14px;
 	align-items: center;
 	transition: var(--trans-05);
+	z-index: 1000;
 }
 
 nav.close ~ .dashboard .top{
