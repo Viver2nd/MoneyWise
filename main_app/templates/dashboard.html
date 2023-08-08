@@ -3,53 +3,48 @@
 
 <h1>Your Dashboard</h1>
 <br>
-    <div class="dash-card-container">
-        <a href="{% url 'accounts' %}" class="dash-card-link">
-            <div class="dash-card">
-                <div class="dash-card-left">
-                    <h4>Current Balance</h4>
-                    <h4>£{{ balance|floatformat:2 }}</h4>
-                </div>
-                <i class="uil uil-balance-scale"></i>
+<div class="dash-card-container">
+    <a href="{% url 'accounts' %}" class="dash-card-link">
+        <div class="dash-card">
+            <div class="dash-card-left">
+                <h4>Current Balance</h4>
+                <h4>£{{ balance|floatformat:2 }}</h4>
             </div>
-        </a>
-        <a href="{% url 'budgets' %}" class="dash-card-link">
-            <div class="dash-card">
-                <div class="dash-card-left">
-                    <h4>Current Budget</h4>
-                    {% if budgets %}
-                        <h4>£{{ budgets.0.amount }}</h4>
-                    {% else %}
-                        <h4>No Budgets</h4>
-                    {% endif %}
-                </div>
-                <i class="uil uil-money-stack"></i>
+            <i class="uil uil-balance-scale"></i>
+        </div>
+    </a>
+    <a href="{% url 'budgets' %}" class="dash-card-link">
+        <div class="dash-card">
+            <div class="dash-card-left">
+                <h4>Current Budget</h4>
+                {% if budgets %}
+                    <h4>£{{ budgets.0.amount }}</h4>
+                {% else %}
+                    <h4>No Budgets</h4>
+                {% endif %}
             </div>
-        </a>
-        <a href="{% url 'incomes' %}" class="dash-card-link">
-            <div class="dash-card">
-                <div class="dash-card-left">
-                    <h4>Incomes</h4>
-                    <h4>£{{ total_incomes }}</h4>
-                </div>
-                <i class="uil uil-download-alt"></i>
+            <i class="uil uil-money-stack"></i>
+        </div>
+    </a>
+    <a href="{% url 'incomes' %}" class="dash-card-link">
+        <div class="dash-card">
+            <div class="dash-card-left">
+                <h4>Incomes</h4>
+                <h4>£{{ total_incomes }}</h4>
             </div>
-        </a>
-        <a href="{% url 'expenses' %}" class="dash-card-link">
-            <div class="dash-card">
-                <div class="dash-card-left">
-                    <h4>Expenses</h4>
-                    <h4>£{{ total_expenses }}</h4>
-                </div>
-                <i class="uil uil-upload-alt"></i>
+            <i class="uil uil-download-alt"></i>
+        </div>
+    </a>
+    <a href="{% url 'expenses' %}" class="dash-card-link">
+        <div class="dash-card">
+            <div class="dash-card-left">
+                <h4>Expenses</h4>
+                <h4>£{{ total_expenses }}</h4>
             </div>
-        </a>
-    </div>
-
-
-    <div>
-        <canvas id="myChart"></canvas>
-    </div>
+            <i class="uil uil-upload-alt"></i>
+        </div>
+    </a>
+</div>
 
     
 
