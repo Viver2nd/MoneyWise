@@ -5,7 +5,8 @@
 <br>
     <div class="dash-card-container">
         <a href="{% url 'accounts' %}" class="dash-card-link">
-            <div class="dash-card">
+            <a href="{% url 'accounts' %}" id="card-text">
+        <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Current Balance</h4>
                     <h4>£{{ balance|floatformat:2 }}</h4>
@@ -14,7 +15,9 @@
             </div>
         </a>
         <a href="{% url 'budgets' %}" class="dash-card-link">
-            <div class="dash-card">
+            </a>
+        <a href="{% url 'budgets' %}" id="card-text">
+        <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Current Budget</h4>
                     <h4>£{{ budgets.0.amount }}</h4>
@@ -23,7 +26,9 @@
             </div>
         </a>
         <a href="{% url 'incomes' %}" class="dash-card-link">
-            <div class="dash-card">
+            </a>
+        <a href="{% url 'incomes' %}" id="card-text">
+        <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Incomes</h4>
                     <h4>£{{ total_incomes }}</h4>
@@ -32,13 +37,16 @@
             </div>
         </a>
         <a href="{% url 'expenses' %}" class="dash-card-link">
-            <div class="dash-card">
+            </a>
+        <a href="{% url 'expenses' %}" id="card-text">
+        <div class="dash-card">
                 <div class="dash-card-left">
                     <h4>Expenses</h4>
                     <h4>£{{ total_expenses }}</h4>
                 </div>
                 <i class="uil uil-upload-alt"></i>
             </div>
+        </a>
         </a>
     </div>
 
@@ -55,6 +63,8 @@
     {% endfor %} <br><br>
 {% endfor %}-->
 
-
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
 
 {% endblock %}

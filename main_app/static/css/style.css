@@ -6,6 +6,11 @@
 	font-family: 'Inter', sans-serif;
 }
 
+#card-text {
+	text-decoration: none;
+	color: black;
+}
+
 :root {
 	/* Colors */
 	--primary-color: #EDF3FB;

@@ -107,6 +107,8 @@
         
     </footer>
 
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         const body = document.querySelector("body");
 			modeToggle = body.querySelector(".mode-toggle");
@@ -124,7 +126,29 @@
 			sidebarToggle.addEventListener("click", () => {
 				sidebar.classList.toggle("close");
 			})
-			
+
+			// Chart.js
+
+			const ctx = document.getElementById('myChart');
+
+			new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: ['Current Balance', 'Current Budgets', 'Income', 'Expenses'],
+				datasets: [{
+				label: 'Financial Summary',
+				data: [1, 2, 3, 4],
+				borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+				y: {
+					beginAtZero: true
+				}
+				}
+			}
+			});
     </script>
 </body>
 </html>
