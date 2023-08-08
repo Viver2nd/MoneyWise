@@ -4,6 +4,7 @@
 <h1>Your Dashboard</h1>
 <br>
     <div class="dash-card-container">
+        <a href="{% url 'accounts' %}" id="card-text">
         <div class="dash-card">
             <div class="dash-card-left">
                 <h4>Current Balance</h4>
@@ -11,6 +12,8 @@
             </div>
             <i class="uil uil-balance-scale"></i>
         </div>
+        </a>
+        <a href="{% url 'budgets' %}" id="card-text">
         <div class="dash-card">
             <div class="dash-card-left">
                 <h4>Current Budget</h4>
@@ -18,6 +21,8 @@
             </div>
             <i class="uil uil-money-stack"></i>
         </div>
+        </a>
+        <a href="{% url 'incomes' %}" id="card-text">
         <div class="dash-card">
             <div class="dash-card-left">
                 <h4>Incomes</h4>
@@ -26,6 +31,8 @@
             </div>
             <i class="uil uil-download-alt"></i>
         </div>
+        </a>
+        <a href="{% url 'expenses' %}" id="card-text">
         <div class="dash-card">
             <div class="dash-card-left">
                 <h4>Expenses</h4>
@@ -34,6 +41,7 @@
             </div>
             <i class="uil uil-upload-alt"></i>
         </div>
+        </a>
     </div>
 
 <!-- This is just to display during development, feel free to change -->
