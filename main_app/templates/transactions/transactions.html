@@ -102,6 +102,7 @@
                         <td>{{ income.date|date:"d/m/y" }}</td>
                         <td>
                             <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
+                            &nbsp; &nbsp; 
                             <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
@@ -115,6 +116,7 @@
                         <td>{{ expense.date|date:"d/m/y" }}</td>
                         <td>
                             <a href="{% url 'expense_update' expense.id %}"><i class="fa fa-edit"></i></a>
+                            &nbsp; &nbsp; 
                             <a href="{% url 'expense_delete' expense.id %}"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>

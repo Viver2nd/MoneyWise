@@ -199,7 +199,7 @@ class AccountUpdate(LoginRequiredMixin, UpdateView):
 
 class AccountDelete(LoginRequiredMixin, DeleteView):
   model = Account
-  success_url = '/accounts'
+  success_url = '/accounts/accounts '
 
 
 class IncomeCreate(LoginRequiredMixin, CreateView):
