@@ -35,9 +35,9 @@
                         <td>{{ expense.category }}</td>
                         <td>{{ expense.date|date:"d/m/Y" }}</td>
                         <td>
-                            <a href="{% url 'expense_delete' expense.id %}" ><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'expense_update' expense.id %}" ><i class="uil uil-edit"></i></a>
                             &nbsp; &nbsp; 
-                            <a href="{% url 'expense_update' expense.id %}" ><i class="fa fa-edit"></i></a>
+                            <a href="{% url 'expense_delete' expense.id %}" ><i class="uil uil-trash-alt"></i></a>   
                         </td>
                     </tr>
                     {% endfor %}
