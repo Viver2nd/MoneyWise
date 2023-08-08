@@ -15,14 +15,12 @@
                 <p>{{ account.name }}</p> 
                 <p>Balance: <span> £{{ account.balance }}</span></p> 
                 <div class="wallet-icons">
-                    <!-- I made these uncentered by adding the outer link to detail screen
-                    and idk how to fix it, my bad 😅 -->
                     <a href="{% url 'account_update' account.id %}"><i class="uil uil-edit"></i></a>
                     <a href="{% url 'account_delete' account.id %}"><i class="uil uil-trash-alt"></i></a>
                 </div>
             </div>
         </a>
-    </div>
+    
 {% endfor %}
-
+</div>
 {% endblock %}

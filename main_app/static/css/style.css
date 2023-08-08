@@ -189,6 +189,7 @@ nav.close ~ .dashboard{
 	padding:10px 14px;
 	align-items: center;
 	transition: var(--trans-05);
+	z-index: 1000;
 }
 
 nav.close ~ .dashboard .top{
@@ -262,7 +263,6 @@ nav.close ~ .dashboard .top{
 	display: flex;
 	flex-wrap: wrap;
 }
-
 
 .dash-card{
 	justify-content: space-between;
@@ -351,10 +351,11 @@ th.date {
 	border-top: 1px solid #CCC;
 	font-size: 25px;
 	display: flex;
-	justify-content: space-around;
+	/*justify-content: space-between;*/
 }
 .wallet-icons i{
 	color: #974DFF;
+	margin-left:80px;
 }
 
 .wallet span{
@@ -365,6 +366,7 @@ th.date {
 }
 
 .form-container{
+	margin:0 auto;
 	background-color: var(--panel-color);
 	border-radius: 25px;
 	padding: 30px;
@@ -376,10 +378,9 @@ th.date {
 	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 }
 
-
 .form-container table{
-	margin-top: 30px;
-	width: 100%;
+	margin: 30px auto;
+	width: 70%;
 	border-radius: 15px;
 }
 .form-container table input{
