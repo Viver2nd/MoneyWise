@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<style>
+    #tran-icon {
+        color:#8503ef;
+        font-size: 20px;
+        padding: 2px;
+    }
+</style>
 
 <div class="dropdown">
     <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -101,8 +107,8 @@
                         <td>{{ income.category }}</td>
                         <td>{{ income.date|date:"d/m/y" }}</td>
                         <td>
-                            <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
-                            <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'income_update' income.id %}"><i id="tran-icon"class="uil uil-edit"></i></a>
+                            <a href="{% url 'income_delete' income.id %}"><i id="tran-icon" class="uil uil-trash-alt"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -114,8 +120,8 @@
                         <td>{{ expense.category }}</td>
                         <td>{{ expense.date|date:"d/m/y" }}</td>
                         <td>
-                            <a href="{% url 'expense_update' expense.id %}"><i class="fa fa-edit"></i></a>
-                            <a href="{% url 'expense_delete' expense.id %}"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'expense_update' expense.id %}"><i id="tran-icon" class="uil uil-edit"></i></a>
+                            <a href="{% url 'expense_delete' expense.id %}"><i id="tran-icon" class="uil uil-trash-alt"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
