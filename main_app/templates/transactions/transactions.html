@@ -8,7 +8,7 @@
       Transactions
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#974DFF">Transactions</a>
+      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#8503ef">Transactions</a>
       <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#03EF62 ;">Incomes</a>
       <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
     </div>
@@ -21,10 +21,11 @@
             <div class="card" style="max-width: 100%;">
                 <a href="{% url 'incomes' %}" class="new-btn">
                     <div class="card-body">
-                        <h4>Incomes</h4>
-                        {% for account in accounts %}
-                        <h6>£{{ account.balance }}</h6>
-                        {% endfor %}
+                        <div class="d-flex justify-content-between align-items-center" >
+                            <h4>Incomes</h4>
+                            <i class="uil uil-download-alt"></i> <!-- Add your icon here -->
+                        </div>
+                        <h6>£{{ total_incomes }}</h6>
                     </div>
                 </a>
             </div>
@@ -33,10 +34,11 @@
             <div class="card" style="max-width: 100%;">
                 <a href="{% url 'expenses' %}" class="new-btn">
                     <div class="card-body">
-                        <h4>Expenses</h4>
-                        {% for account in accounts %}
-                        <h6>£{{ account.balance }}</h6>
-                        {% endfor %}
+                        <div class="d-flex justify-content-between align-items-center" >
+                            <h4>Expenses</h4>
+                            <i class="uil uil-upload-alt"></i> <!-- Add your icon here -->
+                        </div>
+                        <h6>£{{ total_expenses }}</h6>
                     </div>
                 </a>
             </div>
@@ -47,21 +49,25 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card" style="max-width: 100%;">
-                <a href="{% url 'incomes' %}" class="new-btn">
+                <a href="{% url 'accounts' %}" class="new-btn">
                     <div class="card-body">
-                        <h4>Current Balance</h4>
-                        {% for account in accounts %}
-                        <h6>£{{ account.balance }}</h6>
-                        {% endfor %}
+                        <div class="d-flex justify-content-between align-items-center" >
+                            <h4>Current balance</h4>
+                            <i class="uil uil-balance-scale"></i> <!-- Add your icon here -->
+                        </div>
+                        <h6>£{{ balance }}</h6>
                     </div>
                 </a>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card" style="max-width: 100%;">
-                <a href="{% url 'expenses' %}" class="new-btn">
+                <a href="{% url 'budgets' %}" class="new-btn">
                     <div class="card-body">
-                        <h4>Budget</h4>
+                        <div class="d-flex justify-content-between align-items-center" >
+                            <h4>Current Budget</h4>
+                            <i class="uil uil-money-stack"></i> <!-- Add your icon here -->
+                        </div>
                         <h6>£{{ budgets.amount }}</h6>
                     </div>
                 </a>

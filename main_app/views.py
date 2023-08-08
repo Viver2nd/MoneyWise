@@ -20,9 +20,18 @@ def dashboard(request):
     balance += int(account.balance)
   budgets = Budget.objects.filter(user=request.user)
 
+  filtered_incomes = Income.objects.filter(account__in=accounts)
+  incomes = [income.amount for income in filtered_incomes]
+  total_incomes = sum(incomes)
+
+  filtered_expenses = Expense.objects.filter(account__in=accounts)
+  expenses = [expense.amount for expense in filtered_expenses]
+  total_expenses = sum(expenses)
+
   return render(request, 'dashboard.html', {
     'accounts': accounts, 'balance': balance,
-    'budgets': budgets
+    'budgets': budgets, 'total_incomes': total_incomes,
+    'total_expenses': total_expenses
   })
 
 
@@ -30,10 +39,30 @@ def dashboard(request):
 def accounts(request):
   # Pass through relevent data 
   accounts = Account.objects.filter(user=request.user)
-  return render(request, 'accounts.html', {
+  return render(request, 'accounts/accounts.html', {
     'accounts': accounts
   })
 
+
+@login_required
+def account_detail(request, account_id):
+  account = Account.objects.get(id=account_id)
+
+  incomes = Income.objects.filter(account=account)
+  expenses = Expense.objects.filter(account=account)
+
+  incomes_list = [income.amount for income in incomes]
+  total_incomes = sum(incomes_list)
+
+  expenses_list = [expense.amount for expense in expenses]
+  total_expenses = sum(expenses_list)
+
+
+  return render(request, 'accounts/detail.html', {
+    'account': account, 'total_incomes': total_incomes,
+    'total_expenses': total_expenses, 'incomes': incomes,
+    'expenses': expenses
+  })
 
 
 @login_required
@@ -49,9 +78,20 @@ def budgets(request):
 
 @login_required
 def stocks(request):
+ 
+  stock_selection = [
+  ['Apple', 'AAPL'], ['Amazon', 'AMZN'], ['Microsoft', 'MSFT'], ['Alphabet (Google)', 'GOOGL'], ['Facebook', 'FB'],
+  ['Tesla', 'TSLA'], ['Netflix', 'NFLX'], ['Alibaba', 'BABA'], ['JPMorgan Chase', 'JPM'], ['Visa', 'V'],
+  ['Johnson & Johnson', 'JNJ'], ['Walmart', 'WMT'], ['Procter & Gamble', 'PG'], ['Mastercard', 'MA'], ['Bank of America', 'BAC'],
+  ['Verizon', 'VZ'], ['NVIDIA', 'NVDA'], ['Disney', 'DIS'], ['Adobe', 'ADBE'], ['Coca-Cola', 'KO'], ['Intel', 'INTC'],
+  ['PayPal', 'PYPL'], ['Pfizer', 'PFE'], ['Cisco', 'CSCO'], ['Netflix', 'NFLX'], ['Oracle', 'ORCL'], ['Abbott Laboratories', 'ABT'],
+  ['Salesforce', 'CRM'], ['Qualcomm', 'QCOM'], ['Home Depot', 'HD'],
+  ]
 
+  return render(request, 'stocks.html', {
+   'stock_selection': stock_selection
+  }) 
 
-  return render(request, 'stocks.html') 
 
 
 @login_required
@@ -73,11 +113,24 @@ def transactions(request):
   # Pass through relevent data 
 
   accounts = Account.objects.filter(user=request.user)
+  budgets = Budget.objects.filter(user=request.user).first()
   expenses = Expense.objects.filter(account__in=accounts)
   incomes = Income.objects.filter(account__in=accounts)
 
+
+
+  incomes_list = [income.amount for income in incomes]
+  total_incomes = sum(incomes_list)
+
+  expenses_list = [expense.amount for expense in expenses]
+  total_expenses = sum(expenses_list)
+
+  balance = total_incomes - total_expenses
+
   return render(request, 'transactions/transactions.html', {
-    'incomes': incomes, 'expenses': expenses, 'accounts': accounts
+    'incomes': incomes, 'expenses': expenses, 'accounts': accounts,
+    'budgets': budgets, 'total_incomes': total_incomes,
+    'total_expenses': total_expenses, 'balance': balance
   })
 
 
@@ -226,4 +279,4 @@ class BudgetUpdate(LoginRequiredMixin, UpdateView):
 
 class BudgetDelete(LoginRequiredMixin, DeleteView):
   model = Budget
-  success_url = '/budget'
+  success_url = '/budgets'

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ account.name }}</h1>
+<br>
+
+<!-- This layout is just to show what values/data currently 
+exist in the page, feel free to change -->
+User: {{ account.user }} <br>
+Account Balance: {{ account.balance }} <br>
+Total of Incomes: {{ total_incomes }} <br>
+Total of Expenses: {{ total_expenses }} <br><br>
+
+List of Incomes: <br>
+{% for income in incomes %}
+    {{ income }}
+{% endfor %} 
+<br><br>
+List of Expenses: <br>
+{% for expense in expenses %}
+    {{ expense }}
+{% endfor %}
+
+
+
+{% endblock %}
