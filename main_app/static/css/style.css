@@ -365,13 +365,13 @@ th.date {
 }
 
 .form-container{
-	margin:0 auto;
+	margin:50px auto;
 	background-color: var(--panel-color);
 	border-radius: 25px;
 	padding: 30px;
 	align-items: center;
 	text-align: center;
-	max-width: 700px;
+	max-width: 500px;
 	box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 	-webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 	-moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
@@ -387,14 +387,6 @@ th.date {
 	border-radius: 25px;
 	border: 2px solid #974DFF;
 	padding: 5px;
-}
-
-.form-container .btn{
-	margin-top: 30px;
-	width: 30%;
-	border-radius: 25px;
-	background-color: #974DFF;
-	color: #FFF;
 }
 
 .dropdown button{
