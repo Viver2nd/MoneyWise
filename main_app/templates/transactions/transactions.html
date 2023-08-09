@@ -9,19 +9,19 @@
     }
 </style>
 
-<div class="dropdown justify-self-ce">
-    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-      Transactions
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#ef03ef">Transactions</a>
-      <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#8503ef ;">Incomes</a>
-      <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
+<div class="container mt-4" style="z-index: 1;">
+    <div class="dropdown justify-self-ce">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+        Transactions
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#60c7dd">Transactions</a>
+            <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#8503ef ;">Incomes</a>
+            <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
+        </div>
     </div>
-  </div>
 <br>
 {% if accounts %}
-<div class="container mt-4" style="z-index: 1;">
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="card" style="max-width: 100%;">
