@@ -13,14 +13,14 @@
             <i class="uil uil-balance-scale"></i>
         </div>
     </a>
-    <a href="{% url 'budgets' %}" class="dash-card-link">
+    <a href="{% url 'budget' %}" class="dash-card-link">
         <div class="dash-card">
             <div class="dash-card-left">
-                <h4>Current Budget</h4>
-                {% if budgets %}
-                    <h4>£{{ budgets.0.amount }}</h4>
+                <h4>Monthly Budget</h4>
+                {% if budget %}
+                    <h4>£{{ budget.amount }}</h4>
                 {% else %}
-                    <h4>No Budgets</h4>
+                    <h4>No Budget</h4>
                 {% endif %}
             </div>
             <i class="uil uil-money-stack"></i>
