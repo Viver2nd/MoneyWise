@@ -124,6 +124,15 @@ def calculator(request):
   return render(request, 'calculator.html')
 
 
+
+@login_required
+def taxes(request):
+
+
+  return render(request, 'taxes.html')
+
+
+
 @login_required
 def transactions(request):
 
