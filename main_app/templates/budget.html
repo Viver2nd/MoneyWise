@@ -1,26 +1,68 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Monthly Budget</h1>
+
+<h1 style="margin-left: 9vmin;">Budget for {{ month }}</h1>
 <br>
-<a href="{% url 'budget_create' %}">New Budget</a>
-<br><br>
-
-
 
 {% if budget %}
-    {{ budget }} 
-    <a href="{% url 'budget_update' budget.id %}"><i class="fa fa-edit"></i></a>
-    <a href="{% url 'budget_delete' budget.id %}"><i class="fa fa-trash"></i></a>
-    <br><br>
-    Total Spent for {{ month }}: £{{ monthly_expenses_sum }}
-    <br><br>
-    Budget remaining: £{{ budget_remaining }}
-
-    <br><br>
+    <div class="container mt-4" style="z-index: 1;">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card" style="max-width: 100%;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center" >
+                                <h4>Budget for {{ month }}</h4>
+                                <i class="uil uil-money-stack"></i> <!-- Add your icon here -->
+                            </div>
+                            <h6>£{{ budget.amount }} <a href="{% url 'budget_update' budget.id %}"><i class="fa fa-edit"></i></a> <a href="{% url 'budget_delete' budget.id %}"><i class="fa fa-trash"></i></a></h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card" style="max-width: 100%;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center" >
+                                <h4>Total Spent for {{ month }}</h4>
+                                <i class="uil uil-upload-alt"></i> <!-- Add your icon here -->
+                            </div>
+                            <h6>£{{ monthly_expenses_sum }}</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card" style="max-width: 100%;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center" >
+                                <h4>Budget remaining</h4>
+                                <i class="uil uil-balance-scale"></i> <!-- Add your icon here -->
+                            </div>
+                            <h6>£{{ budget_remaining }}</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
 {% else %}
-    <h2>You have no budget</h2><br>
-    <a href="{% url 'budget_create' %}">Create Budget</a>
+<h3 style="margin-left: 9vmin;">You have no budget...</h3><br>
+<a href="{% url 'budget_create' %}" style="margin-left: 9vmin;">Create Budget</a>
+{% endif %}
+
+
+
+<!-- Feel free to change all styling etc -->
+
+{% if budget %}
+    <div id="chart-section" style="height: 300px; width: 500px; margin-left: 15vmin; margin-top: 5vmin; margin-bottom: 5vmin;">
+        <canvas id="myChart"></canvas>
+    </div>
+{% else %}
+
 {% endif %}
 
 
@@ -37,17 +79,17 @@
             <table id="income-table" class="table">
                 <thead>
                     <tr>
-                        <th>Amount</th>
-                        <th>Category</th>
-                        <th class="date">Date</th>
+                        <th class="text-center">Amount</th>
+                        <th class="text-center">Category</th>
+                        <th class="date text-center">Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for expense in expenses %}
                     <tr>
-                        <td class="text-danger">{{ expense.amount }}</td>
-                        <td>{{ expense.category }}</td>
-                        <td>{{ expense.date|date:"d/m/Y" }}</td>
+                        <td class="text-danger text-center">{{ expense.amount }}</td>
+                        <td class="text-center">{{ expense.category }}</td>
+                        <td class="text-center">{{ expense.date|date:"d/m/Y" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -101,7 +143,7 @@
         },
         plugins: {
             legend: {
-                display: true,
+                display: false,
                 position: 'top'
             }
         },
@@ -119,6 +161,3 @@
 
 
 {% endblock %}
-
-
-
