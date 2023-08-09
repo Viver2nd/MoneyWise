@@ -44,8 +44,11 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div class="d-flex flex-column justify-content-between align-items-left">
-                        <h4>Total Anual Tax</h4>
+                        <h4>Total Annual Tax</h4>
                         <h6 id="taxDisplay">£</h6>
+                        <br>
+                        <h4>Income After Tax</h4>
+                        <h6 id="incomeDisplay">£</h6>
                     </div>
                     <i class="uil uil-balance-scale"></i>
                 </div>
@@ -55,6 +58,14 @@
 </div>
 
 <script>
+
+
+    const format = {
+        style: "decimal",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    };
+
     let tax;
 
     function calculateTax() {
@@ -65,6 +76,7 @@
     const calculateButtonEl = document.getElementById("calculateButton");
 
     const taxDisplayEl = document.getElementById("taxDisplay");
+    const incomeDisplayEl = document.getElementById("incomeDisplay");
 
     calculateButtonEl.addEventListener('click', function(evt) {
         evt.preventDefault();
@@ -91,11 +103,10 @@
             tax = (taxableIncomeOne / 5) + (taxableIncomeTwo / 2.5) + (taxableIncomeThree / 2.22222222);
         }
 
+        income = salaryYearly - tax;
 
-
-        console.log(salaryYearly);
-        console.log(tax);
-        taxDisplayEl.innerText = `£${tax.toFixed(2)}`;
+        taxDisplayEl.innerText = `£${tax.toLocaleString("en-US", format)}`;
+        incomeDisplayEl.innerText = `£${income.toLocaleString("en-US", format)}`;
     });
 
 </script>

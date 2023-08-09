@@ -391,7 +391,7 @@ th.date {
 
 .dropdown button{
     border-radius: 30px;
-    background-color: #ef03ef;
+    background-color: #60c7dd;
     height: 60px;
     width:200px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -401,7 +401,7 @@ th.date {
 
 .dropdown button:hover {
     color: white;
-    background-color: #be02be;
+    background-color: #60c7dd;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -436,12 +436,6 @@ th.date {
     width: 400px;
     height: 300px;
 }
-
-
-
-
-
-
 
 
 
