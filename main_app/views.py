@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Account, Income, Expense, Budget
+from .models import Account, Income, Expense, Budget, User
 from datetime import datetime
 import calendar
 from django.db.models import Q
@@ -18,6 +18,8 @@ import requests
 @login_required
 def dashboard(request):
   # Pass through relevent data 
+  user = User.objects.get(id=request.user.id)
+
   accounts = Account.objects.filter(user=request.user)
   balance = 0
   for account in accounts: 
@@ -35,7 +37,7 @@ def dashboard(request):
   return render(request, 'dashboard.html', {
     'accounts': accounts, 'balance': balance,
     'budget': budget, 'total_incomes': total_incomes,
-    'total_expenses': total_expenses
+    'total_expenses': total_expenses, 'user': user
   })
 
 
