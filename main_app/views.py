@@ -17,8 +17,7 @@ import requests
 
 @login_required
 def dashboard(request):
-  # Pass through relevent data 
-  user = User.objects.get(id=request.user.id)
+
 
   accounts = Account.objects.filter(user=request.user)
   balance = 0
@@ -37,13 +36,13 @@ def dashboard(request):
   return render(request, 'dashboard.html', {
     'accounts': accounts, 'balance': balance,
     'budget': budget, 'total_incomes': total_incomes,
-    'total_expenses': total_expenses, 'user': user
+    'total_expenses': total_expenses
   })
 
 
 @login_required
 def accounts(request):
-  # Pass through relevent data 
+
   accounts = Account.objects.filter(user=request.user)
   return render(request, 'accounts/accounts.html', {
     'accounts': accounts
@@ -120,21 +119,14 @@ def stocks(request):
 
 @login_required
 def calculator(request):
-  # Pass through relevent data 
+
 
   return render(request, 'calculator.html')
 
 
 @login_required
-def settings(request):
-  # Pass through relevent data 
-
-  return render(request, 'settings.html')
-
-
-@login_required
 def transactions(request):
-  # Pass through relevent data 
+
 
   accounts = Account.objects.filter(user=request.user)
   budget = Budget.objects.filter(user=request.user).first()
@@ -158,8 +150,9 @@ def transactions(request):
   })
 
 
+@login_required
 def incomes(request):
-  # Pass through relevent data 
+
 
   accounts = Account.objects.filter(user=request.user)
 
@@ -171,8 +164,9 @@ def incomes(request):
   })
 
 
+@login_required
 def expenses(request):
-  # Pass through relevent data 
+
 
   accounts = Account.objects.filter(user=request.user)
 
@@ -198,6 +192,7 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
+@login_required
 def demo_account(request):
   # Check if the user is already logged in
   if request.user.is_authenticated:
