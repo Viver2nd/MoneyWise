@@ -1,10 +1,55 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<style>
+  .delete-form{
+    background-color: var(--panel-color);
+    border-radius: 25px;
+    padding:40px;
+    margin:20px;
+    align-items: left;
+    box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+  }
+  h1, h4{
+    margin-bottom: 30px;
+  }
+
+  h4 span{
+    color: #974DFF;
+  }
+
+  form .btn{
+      background-color: #974DFF;
+      color: #FFF;
+      border-radius: 25px;
+      padding:10px;
+      width:110px;
+      border: none;
+      margin-right: 50px;
+  }
+  form .btn:hover{
+    color: white;
+  }
+
+  form a{
+    color:#974DFF;
+    text-decoration: none;
+  }
+  form a:hover{
+    color:#974DFF;
+  }
+
+</style>
+
+<div class="delete-form">
   <h1>Delete Expense</h1>
 
   <h4>Are you sure you want to delete this transaction?</h4>
-  {{ object }} <br>
+  <p>You spent £{{ object.amount }} from your {{ object.account.name }} account through {{ object.category }} on {{ object.date|date:"d/m/y" }}</p><br>
+ <br>
 
 
   <form action="" method="POST">
@@ -12,4 +57,5 @@
     <input type="submit" value="Yes Delete" class="btn">
     <a href="{% url 'expenses' %}">Cancel</a>
   </form>
+</div>
 {% endblock %}
