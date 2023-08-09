@@ -9,6 +9,7 @@
     border-radius: 50vmin;
     height: 30px;
     padding: 5px;
+    margin-top: 2vmin;
     box-shadow: 2px 2px 4px #c3c3c3;
 }
 
@@ -20,16 +21,21 @@
     font-size: 20px;
 }
 
+#calc-title {
+    text-align: center;
+}
+
 </style>
 
 <div class="d-flex flex-column justify-content-center align-items-center">
     
     <div class="container d-flex justify-content-between align-items-center">
         <form class="d-flex flex-column justify-content-center align-items-center">
-            <h1>Compound Interest Calculator</h1>
-            <br><br>
+            <br>
+            <h2 id="calc-title">Compound Interest Calculator</h2>
+            <br>
             <div>
-                <label for="startingAmount" style="padding-right: 5.25vmin;" class="calc-text">Initial Investment <strong><span id="form-icon">(£)</span></strong></label>
+                <label for="startingAmount" style="padding-right: 5.25vmin" class="calc-text">Initial Investment <strong><span id="form-icon">(£)</span></strong></label>
                 <input type="number" min="0" required id="startingAmount" name="startingAmount" class="calc-input-box"><br>
             </div>
             <div>
@@ -44,7 +50,7 @@
                 <label for="years" style="padding-right: 1vmin;" class="calc-text">Length of Time in Years</label>
                 <input type="number" min="1" required id="years" name="years" class="calc-input-box"><br>
             </div>
-            <button class="btn btn-primary" style="margin-top: 3.5vmin;">Calculate</button>
+            <button class="btn btn-primary" style="margin-top: 5vmin;">Calculate</button>
         </form>
         <div id="chart-section" class="d-flex justify-content-center align-items-center" style="height: 600px; width: 600px;"> 
             
