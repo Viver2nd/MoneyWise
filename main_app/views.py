@@ -192,7 +192,6 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
-@login_required
 def demo_account(request):
   # Check if the user is already logged in
   if request.user.is_authenticated:
