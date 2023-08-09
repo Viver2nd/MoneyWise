@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Account, Income, Expense, Budget
+from .models import Account, Income, Expense, Budget, User
 from datetime import datetime
 import calendar
 from django.db.models import Q
@@ -17,7 +17,8 @@ import requests
 
 @login_required
 def dashboard(request):
-  # Pass through relevent data 
+
+
   accounts = Account.objects.filter(user=request.user)
   balance = 0
   for account in accounts: 
@@ -41,7 +42,7 @@ def dashboard(request):
 
 @login_required
 def accounts(request):
-  # Pass through relevent data 
+
   accounts = Account.objects.filter(user=request.user)
   return render(request, 'accounts/accounts.html', {
     'accounts': accounts
@@ -118,21 +119,14 @@ def stocks(request):
 
 @login_required
 def calculator(request):
-  # Pass through relevent data 
+
 
   return render(request, 'calculator.html')
 
 
 @login_required
-def settings(request):
-  # Pass through relevent data 
-
-  return render(request, 'settings.html')
-
-
-@login_required
 def transactions(request):
-  # Pass through relevent data 
+
 
   accounts = Account.objects.filter(user=request.user)
   budget = Budget.objects.filter(user=request.user).first()
@@ -156,8 +150,9 @@ def transactions(request):
   })
 
 
+@login_required
 def incomes(request):
-  # Pass through relevent data 
+
 
   accounts = Account.objects.filter(user=request.user)
 
@@ -169,8 +164,9 @@ def incomes(request):
   })
 
 
+@login_required
 def expenses(request):
-  # Pass through relevent data 
+
 
   accounts = Account.objects.filter(user=request.user)
 
@@ -196,6 +192,7 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 
+@login_required
 def demo_account(request):
   # Check if the user is already logged in
   if request.user.is_authenticated:
