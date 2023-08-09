@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-<h1>Budget for {{ month }}</h1>
+<h1>Monthly Budget</h1>
 <br>
+<a href="{% url 'budget_create' %}">New Budget</a>
+<br><br>
 
-<!-- Feel free to change all styling etc -->
+
 
 {% if budget %}
-    Budget for {{ month }}: £{{ budget.amount }} 
+    {{ budget }} 
     <a href="{% url 'budget_update' budget.id %}"><i class="fa fa-edit"></i></a>
     <a href="{% url 'budget_delete' budget.id %}"><i class="fa fa-trash"></i></a>
     <br><br>
@@ -16,9 +17,6 @@
     <br><br>
     Budget remaining: £{{ budget_remaining }}
 
-    <div id="chart-section" style="height: 300px; width: 300px;">
-        <canvas id="myChart"></canvas>
-    </div>
     <br><br>
 {% else %}
     <h2>You have no budget</h2><br>
@@ -39,17 +37,17 @@
             <table id="income-table" class="table">
                 <thead>
                     <tr>
-                        <th class="text-center">Amount</th>
-                        <th class="text-center">Category</th>
-                        <th class="date text-center">Date</th>
+                        <th>Amount</th>
+                        <th>Category</th>
+                        <th class="date">Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for expense in expenses %}
                     <tr>
-                        <td class="text-danger text-center">{{ expense.amount }}</td>
-                        <td class="text-center">{{ expense.category }}</td>
-                        <td class="text-center">{{ expense.date|date:"d/m/Y" }}</td>
+                        <td class="text-danger">{{ expense.amount }}</td>
+                        <td>{{ expense.category }}</td>
+                        <td>{{ expense.date|date:"d/m/Y" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -103,7 +101,7 @@
         },
         plugins: {
             legend: {
-                display: false,
+                display: true,
                 position: 'top'
             }
         },
