@@ -1,34 +1,106 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if object %}
-  <h1 style="margin-left: 9vmin;">Edit {{ object }}</h1><br>
-{% else %}
-  <h1 style="margin-left: 9vmin;">Add Budget</h1><br>
-{% endif %}
-
 <style>
-
-.dashboard {
-    background-color: #FFFFFF;
-    border-style: none;
-    border-radius: 50vmin;
-    height: 30px;
-    padding: 5px;
-    margin-top: 2vmin;
-    box-shadow: 2px 2px 4px #c3c3c3;
+.budget-form {
+    margin:50px auto;
+    background-color: var(--panel-color);
+    border-radius: 25px;
+    padding: 30px;
+    align-items: center;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 5px 6px 15px 1px rgba(0,0,0,0.2);
 }
 
+.budget-form table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.budget-form table th,
+.budget-form table td {
+  padding: 10px;
+  border: none;
+}
+
+.budget-form table th {
+  text-align: left;
+}
+
+.budget-form input[name="amount"] {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none; 
+  width: 100%; 
+  padding: 8px; 
+  font-size: 16px; 
+  background-color: transparent; 
+  transition: border-bottom 0.2s ease; 
+  color: var(--text-color);
+}
+
+.budget-form input[name="amount"]:focus {
+  border-bottom: 1px solid #007bff; 
+}
+
+.budget-form .form-buttons {
+  display: flex;
+  margin:30px 30px 15px 30px;
+  justify-content: space-around;
+}
+
+.budget-form .form-buttons input[type="submit"],
+.budget-form .form-buttons a {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-buttons input[type="submit"] {
+  background-color: var(--panel-color);
+  color: #60e7ff;
+  border: none;
+  transition: .3s;
+}
+
+.form-buttons a {
+  background-color: var(--panel-color);
+  color: #333;
+  text-decoration: none;
+}
+
+.form-buttons input[type="submit"]:hover,
+.form-buttons a:hover {
+  background-color:#60e7ff ;
+  box-shadow: 0 0 0 5px #60e7ff;
+  color: #fff;
+}
 </style>
 
+
 <!-- Leaving the action empty makes the form post to the same url used to display it -->
-<form action="" method="POST" style="margin-left: 9vmin;">
+<form action="" method="POST" class="budget-form" >
+  {% if object %}
+  <h1>Edit {{ object }}</h1><br>
+{% else %}
+  <h1>Add Budget</h1><br>
+{% endif %}
   {% csrf_token %}
   <table>
     {{ form.as_table }}
   </table><br>
-  <input type="submit" value="Submit" class="btn" style="color: white; margin-left: -1.25vmin;">
-  <a href="{% url 'budget' %}">Cancel</a>
+  <div class="form-buttons">
+      <input type="submit" value="Submit" class="btn btn-primary">
+      <a href="{% url 'budget' %}" class="btn btn-secondary">Cancel</a>
+  </div>
+  </div>
 </form>
 
 {% endblock %}
