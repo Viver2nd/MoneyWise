@@ -41,25 +41,36 @@
             <button class="btn btn-primary" style="margin-top: 5vmin;" id="calculateButton">Calculate</button>
         </form>
         <div class="col-md-6 mb-4" style="margin-top: 32.5vmin;">
-            <div class="card" style="max-width: 100%;">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center" >
-                            <h4>Total Anual Tax</h4>
-                            <i class="uil uil-upload-alt"></i> <!-- Add your icon here -->
-                        </div>
+            <div class="card">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div class="d-flex flex-column justify-content-between align-items-left">
+                        <h4>Total Anual Tax</h4>
                         <h6 id="taxDisplay">£</h6>
                     </div>
-                </a>
+                    <i class="uil uil-balance-scale"></i>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    let tax;
 
     function calculateTax() {
 
-        let tax;
+        
+    }
+
+    const calculateButtonEl = document.getElementById("calculateButton");
+
+    const taxDisplayEl = document.getElementById("taxDisplay");
+
+    calculateButtonEl.addEventListener('click', function(evt) {
+        evt.preventDefault();
+        const salaryYearly = document.getElementById('yearlySalary').value;
+
+
         let taxableIncomeOne;
         let taxableIncomeTwo;
         let taxableIncomeThree;
@@ -79,17 +90,12 @@
             taxableIncomeThree = (salaryYearly - 50270);
             tax = (taxableIncomeOne / 5) + (taxableIncomeTwo / 2.5) + (taxableIncomeThree / 2.22222222);
         }
-        return tax
-    }
 
-    const calculateButtonEl = document.getElementById("calculateButton");
 
-    const taxDisplayEl = document.getElementById("taxDisplay");
 
-    calculateButtonEl.addEventListener('click', function(evt) {
-        evt.preventDefault();
-        const salaryYearly = document.getElementById('yearlySalary').value;
-        taxDisplayEl.innerText = `£${tax}`;
+        console.log(salaryYearly);
+        console.log(tax);
+        taxDisplayEl.innerText = `£${tax.toFixed(2)}`;
     });
 
 </script>
