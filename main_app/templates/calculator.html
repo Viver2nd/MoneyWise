@@ -32,7 +32,7 @@
     <div class="container d-flex justify-content-between align-items-center">
         <form class="d-flex flex-column justify-content-center align-items-center">
             <br>
-            <h2 id="calc-title">Compound Interest Calculator</h2>
+            <h2 id="calc-title">Investment Calculator</h2>
             <br>
             <div>
                 <label for="startingAmount" style="padding-right: 5.25vmin" class="calc-text">Initial Investment <strong><span id="form-icon">(£)</span></strong></label>
@@ -58,7 +58,7 @@
     </div>
 
     <br>
-    <h2></h2>
+    <h3></h3>
     <div class="container mt-4">
         <div class="card">
             <div id="table-section">
@@ -135,7 +135,7 @@
                 
             })
             document.getElementById('table-section').innerHTML = table;
-            document.querySelector('h2').innerText = `In ${years} years, you will have £${result[result.length - 1].amount.toLocaleString("en-US", format)}`
+            document.querySelector('h3').innerText = `In ${years} years, you will have £${result[result.length - 1].amount.toLocaleString("en-US", format)}`
             document.querySelector('tbody').innerHTML = string.join('');
 
 
