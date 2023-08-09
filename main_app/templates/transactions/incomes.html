@@ -1,20 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-<div class="dropdown">
-    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-      Incomes
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#8503ef">Transactions</a>
-      <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#03EF62 ;">Incomes</a>
-      <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
+<div class="container d-flex justify-content-around align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="dropdown">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            Incomes
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#8503ef">Transactions</a>
+                <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#03EF62 ;">Incomes</a>
+                <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
+            </div>
+        </div>
+        <br><br>
+        <a class="new-btn" href="{% url 'income_create' %}">+ New Income </a>
     </div>
-  </div>
-<br>
-<a class="new-btn" href="{% url 'income_create' %}">+ New Income </a>
-<br><br>
+    <!-- This div contains the chart. feel free to resize and edit -->
+    <div id="chart-section" style="height: 400px; width: 400px;"> 
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+
+
+
+
 
 <div class="container mt-4">
     <div class="card">
@@ -32,7 +43,7 @@
                 <tbody>
                     {% for income in incomes %}
                     <tr>
-                        <td>{{ income.amount }}</td>
+                        <td class="text-success">{{ income.amount }}</td>
                         <td>{{ income.category }}</td>
                         <td>{{ income.date|date:"d/m/Y" }}</td>
                         <td>
@@ -77,6 +88,57 @@
             sortByDate();
         });
     });
+
+    // Chart JS
+    
+    let categories = {
+        salary: 0,
+        gift: 0,
+        investment: 0,
+        rewards: 0,
+        other: 0
+    };
+
+    // Ignore red lines, the code should work
+    {% for income in incomes %}
+    categories.{{ income.category }} += {{ income.amount }}
+    {% endfor %}
+    
+    let labels = []
+
+    for (let key in categories) {
+        labels.push(`${key}: £${categories[key]}`)
+    }
+
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: labels,
+        datasets: [{
+            label: 'Total Earned',
+            data: Object.values(categories),
+            backgroundColor: [
+                'green', // Salary
+                'orange', // Gift
+                'blue', // Investment
+                'gold', // Rewards
+                'gray', // Other
+            ],
+            borderColor: 'rgba(0, 0, 0, 1)',
+            borderWidth: 0,
+        }]
+      },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,  // Display the labels?
+                    position: 'right',  // Adjust label position as needed
+                },
+            },
+        }
+    });
+
 </script>
 
 

@@ -440,3 +440,8 @@ th.date {
 	text-decoration: none;
 	color: var(--text-color);
 }
+
+.chart-container {
+    width: 400px;
+    height: 300px;
+}

@@ -6,6 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Account, Income, Expense, Budget
+from datetime import datetime
+import calendar
+from django.db.models import Q
 from .forms import IncomeForm, ExpenseForm
 from django.http import JsonResponse
 import requests
@@ -19,7 +22,7 @@ def dashboard(request):
   balance = 0
   for account in accounts: 
     balance += int(account.balance)
-  budgets = Budget.objects.filter(user=request.user)
+  budget = Budget.objects.filter(user=request.user).first()
 
   filtered_incomes = Income.objects.filter(account__in=accounts)
   incomes = [income.amount for income in filtered_incomes]
@@ -31,7 +34,7 @@ def dashboard(request):
 
   return render(request, 'dashboard.html', {
     'accounts': accounts, 'balance': balance,
-    'budgets': budgets, 'total_incomes': total_incomes,
+    'budget': budget, 'total_incomes': total_incomes,
     'total_expenses': total_expenses
   })
 
@@ -67,13 +70,31 @@ def account_detail(request, account_id):
 
 
 @login_required
-def budgets(request):
-  # Pass through relevent data 
+def budget(request):
+  accounts = Account.objects.filter(user=request.user)
+  budget = Budget.objects.filter(user=request.user).first()
+  month = datetime.now().month
+  year = datetime.now().year
+  budget_remaining = 0
+  
 
+  expenses = Expense.objects.filter(
+    Q(account__in=accounts),
+    date__month=month,
+    date__year=year
+    )
+  
+  expenses_list = [expense.amount for expense in expenses]
+  monthly_expenses_sum = sum(expenses_list)
 
-  budgets = Budget.objects.filter(user=request.user)
-  return render(request, 'budgets.html', {
-    'budgets': budgets
+  month = calendar.month_name[month]
+
+  if budget:
+    budget_remaining = budget.amount - monthly_expenses_sum
+
+  return render(request, 'budget.html', {
+    'budget': budget, 'monthly_expenses_sum': monthly_expenses_sum, 'expenses': expenses,
+    'month': month, 'budget_remaining': budget_remaining
   })
 
 
@@ -114,7 +135,7 @@ def transactions(request):
   # Pass through relevent data 
 
   accounts = Account.objects.filter(user=request.user)
-  budgets = Budget.objects.filter(user=request.user).first()
+  budget = Budget.objects.filter(user=request.user).first()
   expenses = Expense.objects.filter(account__in=accounts)
   incomes = Income.objects.filter(account__in=accounts)
 
@@ -130,7 +151,7 @@ def transactions(request):
 
   return render(request, 'transactions/transactions.html', {
     'incomes': incomes, 'expenses': expenses, 'accounts': accounts,
-    'budgets': budgets, 'total_incomes': total_incomes,
+    'budget': budget, 'total_incomes': total_incomes,
     'total_expenses': total_expenses, 'balance': balance
   })
 
@@ -156,7 +177,7 @@ def expenses(request):
   expenses = Expense.objects.filter(account__in=accounts)
 
   return render(request, 'transactions/expenses.html', {
-    'accounts': accounts, 'expenses': expenses
+    'expenses': expenses
   })
 
 
@@ -288,7 +309,7 @@ class ExpenseDelete(LoginRequiredMixin, DeleteView):
 
 class BudgetCreate(LoginRequiredMixin, CreateView):
   model = Budget
-  fields = ['date_from', 'date_to', 'amount']
+  fields = ['amount']
 
   def form_valid(self, form):
     form.instance.user = self.request.user
@@ -296,8 +317,8 @@ class BudgetCreate(LoginRequiredMixin, CreateView):
   
 class BudgetUpdate(LoginRequiredMixin, UpdateView):
   model = Budget
-  fields = ['date_from', 'date_to', 'amount']
+  fields = ['amount']
 
 class BudgetDelete(LoginRequiredMixin, DeleteView):
   model = Budget
-  success_url = '/budgets'
+  success_url = '/budget'

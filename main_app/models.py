@@ -46,7 +46,7 @@ class Income(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.account.name} made {self.amount} on {self.category} at {self.date}"
+        return f"You gained £{self.amount} in your {self.account.name} account through {self.category} at {self.date}"
     
     def get_absolute_url(self):
         return reverse('incomes')
@@ -67,7 +67,7 @@ class Expense(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.account.name} spent {self.amount} on {self.category} at {self.date}"
+        return f"You spent £{self.amount} with your {self.account.name} account on {self.category} at {self.date}"
     
     def get_absolute_url(self):
         return reverse('expenses')
@@ -77,13 +77,11 @@ class Expense(models.Model):
 
 
 class Budget(models.Model):
-    date_from = models.DateField()
-    date_to = models.DateField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Budget from {self.date_from} to {self.date_to}: {self.amount}"
+        return f"Monthly Budget: {self.amount}"
     
     def get_absolute_url(self):
-        return reverse('budgets')
+        return reverse('budget')
