@@ -104,7 +104,7 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
         // Chart JS
-    
+    setTimeout(function() {
     let categories = {
         clothing: 0,
         restaurant: 0,
@@ -156,6 +156,7 @@ $(document).ready(function(){
             },
         }
     });
+    }, 100);
 </script>
 
 {% endblock %}
