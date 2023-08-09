@@ -1,5 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+  .form-container input[type="submit"] {
+  background-color: #974DFF;
+  color: #fff;
+  border: none;
+  transition: .3s;
+  }
+  .form-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  }
+
+  .form-container table th,
+  .form-container table td {
+    padding: 10px;
+    border: none;
+  }
+
+  .form-container #id_name{
+    border: none;
+    border-bottom: 1px solid #ddd;
+    transition: border-bottom 0.2s ease;
+    outline: none;
+    background-color: transparent;
+    color: var(--text-color);
+    width: 100%; 
+  }
+
+  select option{
+    color: black;
+  }
+
+  .form-container input[type="submit"]:hover{
+    box-shadow: 0 0 0 5px #974dffbd;
+  }
+
+  .form-container input[name="name"] {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none; 
+  width: 100%; 
+  padding: 8px; 
+  font-size: 16px; 
+  background-color: red; 
+  transition: border-bottom 0.2s ease; 
+  color: var(--text-color);
+  }
+</style>
 
 
 <!-- Leaving the action empty makes the form post to the same url used to display it -->
@@ -13,7 +62,7 @@
   <table>
     {{ form.as_table }}
   </table>
-  <input type="submit" value="Submit" class="btn">
+  <input type="submit" value="Submit" class="btn btn-primary">
 </form>
 
 {% endblock %}
