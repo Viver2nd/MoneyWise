@@ -56,6 +56,7 @@ document.getElementById('stock-form').addEventListener('submit', function(event)
         const latestDataPoint = Object.values(timeSeriesData)[0];
         const currentStockPrice = parseFloat(latestDataPoint['4. close']);
 
+        document.querySelector('h2').innerText = `We're sorry, but our stock data service is currently experiencing technical difficulties due to limitations with the free stock API`;
 
         document.querySelector('h2').innerText = `${name}: £${currentStockPrice.toFixed(2)}`;
 
@@ -105,6 +106,7 @@ document.getElementById('stock-form').addEventListener('submit', function(event)
 
     })
     .catch(error => {
+        document.querySelector('h2').innerText = `We're sorry, but our stock data service is currently experiencing technical difficulties due to limitations with the free stock API`;
         console.error('Error fetching data:', error);
     })
 })

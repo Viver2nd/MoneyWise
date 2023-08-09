@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
-<h1>Accounts</h1>
+<h1>Your Accounts</h1>
 <br>
     <div class="account-container">
             <a href="{% url 'account_create' %}" class="add-account">
@@ -11,9 +12,15 @@
     {% for account in accounts %}
         <a href="{% url 'account_detail' account.id %}" class="dash-card-link">
             <div class="wallet">
-                <h4><i class="uil uil-wallet"></i>Your Wallet</h4>
-                <p>{{ account.name }}</p> 
-                <p>Balance: <span> £{{ account.balance }}</span></p> 
+                <div class="d-flex justify-content-around align-items-center">
+                    <div class="bank-logo pb-3">
+                        <img src="../../static/images/{{ account.name }}-Logo.png" alt="logo">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <p>{{ account.name }}</p> 
+                        <p>Balance: <span>£{{ account.balance }}</span></p> 
+                    </div>
+                </div>
                 <div class="wallet-icons">
                     <a href="{% url 'account_update' account.id %}"><i class="uil uil-edit"></i></a>
                     <a href="{% url 'account_delete' account.id %}"><i class="uil uil-trash-alt"></i></a>
