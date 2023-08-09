@@ -21,7 +21,7 @@
 <hr>
 
 <!-- This div contains the chart -->
-<div id="chart-section">
+<div id="chart-section" style="height: 600px; width: 600px;">
     
 </div>
 
@@ -37,77 +37,77 @@
 
 // <!-- Use the dummy data in development -->
 
-// const baseURL = 'https://www.alphavantage.co/query';
-// const apiKey = 'KEDWTVV13Y63RVQR';
-// let outputType = 'TIME_SERIES_MONTHLY';
+const baseURL = 'https://www.alphavantage.co/query';
+const apiKey = 'KEDWTVV13Y63RVQR';
+let outputType = 'TIME_SERIES_MONTHLY';
 
-// document.getElementById('stock-form').addEventListener('submit', function(event) {
-//     event.preventDefault();
-//     const [stock, name] = document.getElementById('stock-search').value.split('-');
-//     const timeFrame = document.getElementById('stock-time').value;
+document.getElementById('stock-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const [stock, name] = document.getElementById('stock-search').value.split('-');
+    const timeFrame = document.getElementById('stock-time').value;
 
-//     const url = `${baseURL}?function=${outputType}&symbol=${stock}&apikey=${apiKey}`;
-//     fetch(url)
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data)
-//         document.getElementById('chart-section').innerHTML= '<canvas id="myChart"></canvas>';
-//         const timeSeriesData = data['Monthly Time Series'];
-//         const latestDataPoint = Object.values(timeSeriesData)[0];
-//         const currentStockPrice = parseFloat(latestDataPoint['4. close']);
+    const url = `${baseURL}?function=${outputType}&symbol=${stock}&apikey=${apiKey}`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        document.getElementById('chart-section').innerHTML= '<canvas id="myChart"></canvas>';
+        const timeSeriesData = data['Monthly Time Series'];
+        const latestDataPoint = Object.values(timeSeriesData)[0];
+        const currentStockPrice = parseFloat(latestDataPoint['4. close']);
 
 
-//         document.querySelector('h2').innerText = `${name}: £${currentStockPrice.toFixed(2)}`;
+        document.querySelector('h2').innerText = `${name}: £${currentStockPrice.toFixed(2)}`;
 
-//         const ctx = document.getElementById('myChart')
+        const ctx = document.getElementById('myChart')
 
-//         const timeSeries = data["Monthly Time Series"];
-//         const sortedDates = Object.keys(timeSeries).sort();
-//         const dates = [];
-//         const prices = [];
+        const timeSeries = data["Monthly Time Series"];
+        const sortedDates = Object.keys(timeSeries).sort();
+        const dates = [];
+        const prices = [];
 
-//         const currentDate = new Date();
-//         currentDate.setFullYear(currentDate.getFullYear() - timeFrame);
+        const currentDate = new Date();
+        currentDate.setFullYear(currentDate.getFullYear() - timeFrame);
 
-//         for (let i = 0; i < sortedDates.length; i++) {
-//             const date = sortedDates[i];
-//             const closePrice = parseFloat(timeSeries[date]["4. close"]);
+        for (let i = 0; i < sortedDates.length; i++) {
+            const date = sortedDates[i];
+            const closePrice = parseFloat(timeSeries[date]["4. close"]);
 
-//             const dataDate = new Date(date);
+            const dataDate = new Date(date);
 
-//             if (dataDate >= currentDate) {
-//                 dates.push(date);
-//                 prices.push(closePrice);
-//             }
-//         }
+            if (dataDate >= currentDate) {
+                dates.push(date);
+                prices.push(closePrice);
+            }
+        }
 
-//         new Chart(ctx, {
-//             type: 'line',
-//             data: {
-//                 labels: dates,
-//                 datasets: [{
-//                     label: name,
-//                     data: prices,
-//                     borderColor: 'rgba(75, 192, 192, 1)',
-//                     borderWidth: 1,
-//                     fill: false,
-//                     pointRadius: 1
-//                 }]
-//             },
-//             options: {
-//                 scales: {
-//                     y: {
-//                         beginAtZero: false
-//                     }
-//                 }
-//             }
-//         });
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: name,
+                    data: prices,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false,
+                    pointRadius: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
 
-//     })
-//     .catch(error => {
-//         console.error('Error fetching data:', error);
-//     })
-// })
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    })
+})
 
 
 
@@ -118,42 +118,42 @@
 
 
 // Dummy chart
-document.getElementById('chart-section').innerHTML= '<canvas id="myChart"></canvas>';
-    var ctx = document.getElementById('myChart')
+// document.getElementById('chart-section').innerHTML= '<canvas id="myChart"></canvas>';
+//     const ctx = document.getElementById('myChart')
     
 
-    const timeSeries = data["Monthly Time Series"];
-    const dates = [];
-    const prices = [];
+//     const timeSeries = data["Monthly Time Series"];
+//     const dates = [];
+//     const prices = [];
 
-    for (var date in timeSeries) {
-        if (timeSeries.hasOwnProperty(date)) {
-            dates.push(date);
-            prices.push(parseFloat(timeSeries[date]["4. close"]));
-        }
-    }
+//     for (var date in timeSeries) {
+//         if (timeSeries.hasOwnProperty(date)) {
+//             dates.push(date);
+//             prices.push(parseFloat(timeSeries[date]["4. close"]));
+//         }
+//     }
 
-    new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: dates,
-        datasets: [{
-            label: 'Dummy Data',
-            data: prices,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-            fill: false,
-            pointRadius: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: false
-            }
-        }
-    }
-});
+//     new Chart(ctx, {
+//         type: 'line',
+//         data: {
+//             labels: dates,
+//             datasets: [{
+//                 label: 'Dummy Data',
+//                 data: prices,
+//                 borderColor: 'rgba(75, 192, 192, 1)',
+//                 borderWidth: 1,
+//                 fill: false,
+//                 pointRadius: 1
+//             }]
+//         },
+//         options: {
+//             scales: {
+//                 y: {
+//                     beginAtZero: false
+//                 }
+//             }
+//         }
+//     });
 </script>
 
 

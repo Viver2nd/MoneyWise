@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Account, Income, Expense, Budget
 from datetime import datetime
+import calendar
 from django.db.models import Q
 from .forms import IncomeForm, ExpenseForm
 from django.http import JsonResponse
@@ -71,23 +72,29 @@ def account_detail(request, account_id):
 @login_required
 def budget(request):
   accounts = Account.objects.filter(user=request.user)
-
-  current_month = datetime.now().month
-  current_year = datetime.now().year
+  budget = Budget.objects.filter(user=request.user).first()
+  month = datetime.now().month
+  year = datetime.now().year
+  budget_remaining = 0
+  
 
   expenses = Expense.objects.filter(
     Q(account__in=accounts),
-    date__month=current_month,
-    date__year=current_year
+    date__month=month,
+    date__year=year
     )
   
   expenses_list = [expense.amount for expense in expenses]
   monthly_expenses_sum = sum(expenses_list)
 
-  budget = Budget.objects.filter(user=request.user).first()
+  month = calendar.month_name[month]
+
+  if budget:
+    budget_remaining = budget.amount - monthly_expenses_sum
 
   return render(request, 'budget.html', {
-    'budget': budget, 'monthly_expenses_sum': monthly_expenses_sum, 'expenses': expenses
+    'budget': budget, 'monthly_expenses_sum': monthly_expenses_sum, 'expenses': expenses,
+    'month': month, 'budget_remaining': budget_remaining
   })
 
 
@@ -170,7 +177,7 @@ def expenses(request):
   expenses = Expense.objects.filter(account__in=accounts)
 
   return render(request, 'transactions/expenses.html', {
-    'accounts': accounts, 'expenses': expenses
+    'expenses': expenses
   })
 
 

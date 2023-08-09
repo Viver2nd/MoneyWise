@@ -1,20 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="container d-flex justify-content-around align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="dropdown">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color: #FF931E;">
+            Expenses
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#8503ef">Transactions</a>
+                <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#03EF62 ;">Incomes</a>
+                <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
+            </div>
+        </div>
+        <br><br>
+        <a class="new-btn" href="{% url 'expense_create' %}"><span class="link-name">+ New Expense </span></a>
 
-<div class="dropdown">
-    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color: #FF931E;">
-      Expenses
-    </button>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#8503ef">Transactions</a>
-      <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#03EF62 ;">Incomes</a>
-      <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
     </div>
-  </div>
-<br>
-<a class="new-btn" href="{% url 'expense_create' %}"><span class="link-name">+ New Expense </span></a>
-<br><br>
+    <!-- This div contains the chart. feel free to resize and edit -->
+    <div id="chart-section" style="height: 400px; width: 400px;"> 
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+
+
+
+
 
 <div class="container mt-4">
     <div class="card">
@@ -31,7 +43,7 @@
                 <tbody>
                     {% for expense in expenses %}
                     <tr>
-                        <td>{{ expense.amount }}</td>
+                        <td class="text-danger">{{ expense.amount }}</td>
                         <td>{{ expense.category }}</td>
                         <td>{{ expense.date|date:"d/m/Y" }}</td>
                         <td>
@@ -75,6 +87,61 @@
         $('#income-table th.date').on('click', function() {
             sortByDate();
         });
+    });
+
+
+        // Chart JS
+    
+    let categories = {
+        clothing: 0,
+        restaurant: 0,
+        supermarket: 0,
+        home: 0,
+        travel: 0,
+        transport: 0,
+        other: 0
+    };
+
+    // Ignore red lines, the code should work
+    {% for expense in expenses %}
+        categories.{{ expense.category }} += {{ expense.amount }}
+    {% endfor %}
+    
+    let labels = []
+
+    for (let key in categories) {
+        labels.push(`${key}: £${categories[key]}`)
+    }
+
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: labels,
+        datasets: [{
+            label: 'Total Spent',
+            data: Object.values(categories),
+            backgroundColor: [
+                'orange', // clothing
+                'red', // restaurant
+                'blue', // supermarket
+                'darkred', // home
+                'lightblue', // travel
+                'green', // transport
+                'gray', // Other
+            ],
+            borderColor: 'rgba(0, 0, 0, 1)',
+            borderWidth: 0,
+        }]
+      },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,  // Display the labels?
+                    position: 'right',  // Adjust label position as needed
+                },
+            },
+        }
     });
 </script>
 
