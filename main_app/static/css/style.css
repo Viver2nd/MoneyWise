@@ -360,7 +360,6 @@ th.date {
 
 .wallet span{
 	color:green;
-	padding-left: 110px;
 	font-weight: 600;
 	font-size: 18px;
 }
@@ -444,4 +443,79 @@ th.date {
 .chart-container {
     width: 400px;
     height: 300px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nav .logo-image{
+	display: flex;
+	min-width: 45px;
+}
+nav .logo-image img{
+	width: 40px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+
+
+.bank-logo {
+	display: flex;
+	min-width: 45px;
+}
+
+.bank-logo img{
+	width: 80px;
+	object-fit: cover;
+	border-radius: 50%;
 }

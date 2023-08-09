@@ -44,7 +44,11 @@
 </style>
 <section>
     <div class="account-details">
-        <h1><span>{{ account.name }}</span>'s Account</h1>
+        <div class="bank-logo d-flex justify-content-center align-items-center">
+            <img src="../../static/images/{{ account.name }}-Logo.png" alt="logo">
+        </div>
+        <br>
+        <h1><span>{{ account.name }}</span> Account</h1>
         <br>
         <div class="account-balance">
             <p>Current Balance:</p>
