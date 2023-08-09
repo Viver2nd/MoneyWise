@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container d-flex justify-content-around align-items-center">
+<style>
+    #expense-icon {
+        color:#FF931E;
+        font-size: 20px;
+        padding: 2px;
+    }
+</style>
+
+<div class="container d-flex justify-content-around align-items-center flex-wrap">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="dropdown">
             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color: #FF931E;">
@@ -18,7 +26,7 @@
 
     </div>
     <!-- This div contains the chart. feel free to resize and edit -->
-    <div id="chart-section" style="height: 400px; width: 400px;"> 
+    <div id="chart-section" style="max-width: 100%; width: 400px;"> 
         <canvas id="myChart"></canvas>
     </div>
 </div>
@@ -31,6 +39,7 @@
 <div class="container mt-4">
     <div class="card">
         <div class="card-body">
+            <div class="table-responsive">
             <table id="income-table" class="table">
                 <thead>
                     <tr>
@@ -47,14 +56,15 @@
                         <td>{{ expense.category }}</td>
                         <td>{{ expense.date|date:"d/m/Y" }}</td>
                         <td>
-                            <a href="{% url 'expense_delete' expense.id %}" ><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'expense_delete' expense.id %}" ><i data-toggle="tooltip" title="Delete"id="expense-icon" class="uil uil-trash-alt"></i></a>
                             &nbsp; &nbsp; 
-                            <a href="{% url 'expense_update' expense.id %}" ><i class="fa fa-edit"></i></a>
+                            <a href="{% url 'expense_update' expense.id %}" ><i data-toggle="tooltip" title="Edit" id="expense-icon" class="uil uil-edit"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </div>
@@ -89,7 +99,10 @@
         });
     });
 
-
+    // Tooltip 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
         // Chart JS
     
     let categories = {

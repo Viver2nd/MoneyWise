@@ -399,7 +399,7 @@ th.date {
 
 .dropdown button{
     border-radius: 30px;
-    background-color: #8503ef;
+    background-color: #ef03ef;
     height: 60px;
     width:200px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -409,7 +409,7 @@ th.date {
 
 .dropdown button:hover {
     color: white;
-    background-color: #58039d;
+    background-color: #be02be;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 

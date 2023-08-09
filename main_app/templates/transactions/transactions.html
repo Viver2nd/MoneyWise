@@ -14,8 +14,8 @@
       Transactions
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#8503ef">Transactions</a>
-      <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#03EF62 ;">Incomes</a>
+      <a class="dropdown-item" href="{% url 'transactions' %}" style="color:#ef03ef">Transactions</a>
+      <a class="dropdown-item" href="{% url 'incomes' %}" style="color:#8503ef ;">Incomes</a>
       <a class="dropdown-item" href="{% url 'expenses' %}" style="color: #FF931E">Expenses</a>
     </div>
   </div>
@@ -107,8 +107,8 @@
                         <td>{{ income.category }}</td>
                         <td>{{ income.date|date:"d/m/y" }}</td>
                         <td>
-                            <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
-                            <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'income_update' income.id %}"><i data-toggle="tooltip" title="Edit" id="tran-icon"class="uil uil-edit"></i></a>
+                            <a href="{% url 'income_delete' income.id %}"><i data-toggle="tooltip" title="Delete" id="tran-icon"class="uil uil-trash-alt"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -120,8 +120,8 @@
                         <td>{{ expense.category }}</td>
                         <td>{{ expense.date|date:"d/m/y" }}</td>
                         <td>
-                            <a href="{% url 'expense_update' expense.id %}"><i class="fa fa-edit"></i></a>
-                            <a href="{% url 'expense_delete' expense.id %}"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'expense_update' expense.id %}"><i data-toggle="tooltip" title="Edit" id="tran-icon" class="uil uil-edit"></i></a>
+                            <a href="{% url 'expense_delete' expense.id %}"><i data-toggle="tooltip" title="Delete" id="tran-icon" class="uil uil-trash-alt"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -145,4 +145,12 @@
 
 
 {% endif %}
+<script>
+    // Tooltip 
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>
+
 {% endblock %}

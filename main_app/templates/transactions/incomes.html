@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container d-flex justify-content-around align-items-center">
+<style>
+    #income-dropdown {
+        background-color: #8503ef;
+    }
+    #tran-icon {
+        color:#8503ef;
+        font-size: 20px;
+        padding: 2px;
+    }
+</style>
+
+<div class="container d-flex justify-content-around align-items-center flex-wrap">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="dropdown">
-            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            <button id="income-dropdown" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
             Incomes
             </button>
             <div class="dropdown-menu">
@@ -17,7 +28,7 @@
         <a class="new-btn" href="{% url 'income_create' %}">+ New Income </a>
     </div>
     <!-- This div contains the chart. feel free to resize and edit -->
-    <div id="chart-section" style="height: 400px; width: 400px;"> 
+    <div id="chart-section" style="max-width: 100%; width: 400px;"> 
         <canvas id="myChart"></canvas>
     </div>
 </div>
@@ -47,9 +58,9 @@
                         <td>{{ income.category }}</td>
                         <td>{{ income.date|date:"d/m/Y" }}</td>
                         <td>
-                            <a href="{% url 'income_delete' income.id %}" ><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'income_delete' income.id %}" ><i data-toggle="tooltip" title="Delete"id="tran-icon" class="uil uil-trash-alt"></i></a>
                             &nbsp; &nbsp; 
-                            <a href="{% url 'income_update' income.id %}" ><i class="fa fa-edit"></i></a>
+                            <a href="{% url 'income_update' income.id %}" ><i data-toggle="tooltip" title="Edit" id="tran-icon" class="uil uil-edit"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -88,6 +99,11 @@
             sortByDate();
         });
     });
+
+    // Tooltip 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
 
     // Chart JS
     
