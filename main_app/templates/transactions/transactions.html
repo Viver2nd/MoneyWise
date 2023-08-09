@@ -23,7 +23,7 @@
 {% if accounts %}
 <div class="container mt-4" style="z-index: 1;">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="card" style="max-width: 100%;">
                 <a href="{% url 'incomes' %}" class="new-btn">
                     <div class="card-body">
@@ -36,7 +36,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="card" style="max-width: 100%;">
                 <a href="{% url 'expenses' %}" class="new-btn">
                     <div class="card-body">
@@ -53,7 +53,7 @@
 </div>
 <div class="container mt-4">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="card" style="max-width: 100%;">
                 <a href="{% url 'accounts' %}" class="new-btn">
                     <div class="card-body">
@@ -66,7 +66,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="card" style="max-width: 100%;">
                 <a href="{% url 'budgets' %}" class="new-btn">
                     <div class="card-body">
@@ -82,57 +82,60 @@
     </div>
 </div>
     <br>
-    {% if incomes or expenses %}
+ {% if incomes or expenses %}
 <div class="container mt-4">
     <div class="card">
         <div class="card-body">
             <h4>Transactions:</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Account</th>
-                        <th>Amount</th>
-                        <th>Category</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for income in incomes %}
-                    <tr>
-                        <td class="text-success">Income</td>
-                        <td>{{ income.account.name }}</td>
-                        <td class="text-success">£{{ income.amount }}</td>
-                        <td>{{ income.category }}</td>
-                        <td>{{ income.date|date:"d/m/y" }}</td>
-                        <td>
-                            <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
-                            <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    {% for expense in expenses %}
-                    <tr>
-                        <td class="text-danger">Expense</td>
-                        <td>{{ expense.account.name }}</td>
-                        <td class="text-danger">£{{ expense.amount }}</td>
-                        <td>{{ expense.category }}</td>
-                        <td>{{ expense.date|date:"d/m/y" }}</td>
-                        <td>
-                            <a href="{% url 'expense_update' expense.id %}"><i class="fa fa-edit"></i></a>
-                            <a href="{% url 'expense_delete' expense.id %}"><i class="fa fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Account</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for income in incomes %}
+                        <tr>
+                            <td class="text-success">Income</td>
+                            <td>{{ income.account.name }}</td>
+                            <td class="text-success">£{{ income.amount }}</td>
+                            <td>{{ income.category }}</td>
+                            <td>{{ income.date|date:"d/m/y" }}</td>
+                            <td>
+                                <a href="{% url 'income_update' income.id %}"><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'income_delete' income.id %}"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% for expense in expenses %}
+                        <tr>
+                            <td class="text-danger">Expense</td>
+                            <td>{{ expense.account.name }}</td>
+                            <td class="text-danger">£{{ expense.amount }}</td>
+                            <td>{{ expense.category }}</td>
+                            <td>{{ expense.date|date:"d/m/y" }}</td>
+                            <td>
+                                <a href="{% url 'expense_update' expense.id %}"><i class="fa fa-edit"></i></a>
+                                <a href="{% url 'expense_delete' expense.id %}"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 {% else %}
 <h4>No Financial Transactions</h4>
 {% endif %}
+
 
 
 
