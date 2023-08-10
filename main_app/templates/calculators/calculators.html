@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+
+    <h1>Financial Calculators</h1>
+    <!-- Change these to buttons / cards to link to each one -->
+    <a href="{% url 'investment' %}">Investment</a>
+    <a href="{% url 'taxes' %}">Tax</a>
+</div>
+
+
+
+{% endblock %}

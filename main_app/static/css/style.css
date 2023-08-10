@@ -177,7 +177,7 @@ nav.close ~ .dashboard{
 	width: calc(100% - 73px);
 }
 
-.dashboard .top{
+.dashboard > .top{
 	background-color: var(--panel-color);
 	position: fixed;
 	top:0;
