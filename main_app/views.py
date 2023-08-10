@@ -118,18 +118,23 @@ def stocks(request):
 
 
 @login_required
-def calculator(request):
+def calculators(request):
 
 
-  return render(request, 'calculator.html')
+  return render(request, 'calculators/calculators.html')
 
+@login_required
+def investment(request):
+
+
+  return render(request, 'calculators/investment.html')
 
 
 @login_required
 def taxes(request):
 
 
-  return render(request, 'taxes.html')
+  return render(request, 'calculators/taxes.html')
 
 
 
@@ -207,7 +212,7 @@ def demo_account(request):
     return redirect('dashboard')
 
   # Authenticate the demo account
-  user = authenticate(username='admin', password='1234')
+  user = authenticate(username='demo', password='1234')
   login(request, user)
   return redirect('dashboard')
 
