@@ -204,6 +204,7 @@ nav.close ~ .dashboard .top{
 }
 .dashboard-content{
 	padding-top: 100px;
+	position: relative;
 }
 .new-btn {
 	background-color: var(--panel-color);
