@@ -44,7 +44,7 @@
             <br>
             <form id="stock-form" action="">
                 <label for="stock-search">Select a Stock</label>&nbsp;:&nbsp;
-                <select id="stock-search" class="select-selected" >
+                <select id="stock-search" class="select-selected" style="width: 23.25vmin;" >
                 {% for stock in stock_selection %}
                     <option value="{{ stock.1 }}-{{ stock.0 }}">{{ stock.0 }}</option>
                 {% endfor %}
